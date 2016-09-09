@@ -14,10 +14,32 @@ class ScalesController < ApplicationController
   def create
     @scale = Scale.new(scale_params)
     if @scale.save
+      flash[:notice] = "Scale successfully added!"
       redirect_to scales_path
     else
       render :new
     end
+  end
+
+  def edit
+    @scale = Scale.find(params[:id])
+  end
+
+  def update
+    @scale= Scale.find(params[:id])
+    if @scale.update(scale_params)
+      flash[:notice] = "Scale successfully updated!"
+      redirect_to scales_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @scale = Scale.find(params[:id])
+    @scale.destroy
+    flash[:notice] = "Scale successfully deleted!"
+    redirect_to scales_path
   end
 
   private

@@ -1,3 +1,10 @@
 <h1><%= @scale.name %></h1>
 
+<p><%= link_to "Edit", edit_scale_path(@scale) %></p>
+<p><%= link_to "Delete", scale_path(@scale),
+                         :data => {:confirm => "You sure?",
+                                   :method => "delete"} %></p>
+
+<hr>
+
 <p><%= link_to "Back to scales", scales_path %></p>

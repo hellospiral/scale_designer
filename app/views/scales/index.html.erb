@@ -1,7 +1,19 @@
 <h1>Current Scales:</h1>
 
-<ul>
-  <% @scales.each do |scale| %>
-    <li><%= link_to scale.name, scale_path(scale) %></li>
-  <% end %>
-</ul>
+<br>
+
+<% if @scales.any? %>
+  <ul>
+    <% @scales.each do |scale| %>
+      <li><%= link_to scale.name, scale_path(scale) %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <h5>There are no scales, click below to add one</h5>
+
+<% end %>
+
+<hr>
+
+<%= link_to "Add a Scale", new_scale_path %>
