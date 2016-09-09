@@ -1,0 +1,7 @@
+<%= render('layouts/errors', :object => @note) %>
+
+<%= form_for [@scale, @note] do |f| %>
+  <%= f.label :frequency %>
+  <%= f.text_field :frequency %>
+  <p><%= f.submit %></p>
+<% end %>

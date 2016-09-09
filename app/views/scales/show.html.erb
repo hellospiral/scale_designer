@@ -1,5 +1,27 @@
 <h1><%= @scale.name %></h1>
 
+<% if @scale.notes.any? %>
+  <h4>Here are the notes in this scale:</h4>
+
+  <ul>
+    <% @scale.notes.each do |note| %>
+      <li>
+        <%= note.frequency %> |
+        <%= link_to "Edit", edit_scale_note_path(@scale, note) %> |
+        <%= link_to "Delete", scale_note_path(@scale, note),
+                                 :data => {:confirm => "Are you sure?",
+                                                :method => "delete"} %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This scale has no notes yet!</p>
+<% end %>
+
+<p><%= link_to "Add a note", new_scale_note_path(@scale) %></p>
+
+<hr>
+
 <p><%= link_to "Edit", edit_scale_path(@scale) %></p>
 <p><%= link_to "Delete", scale_path(@scale),
                          :data => {:confirm => "You sure?",

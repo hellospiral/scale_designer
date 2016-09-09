@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909173141) do
+ActiveRecord::Schema.define(version: 20160909190436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notes", force: :cascade do |t|
+    t.float   "frequency"
+    t.integer "scale_id"
+  end
 
   create_table "scales", force: :cascade do |t|
     t.string   "name"
