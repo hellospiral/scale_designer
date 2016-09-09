@@ -1,0 +1,7 @@
+<h1>Current Scales:</h1>
+
+<ul>
+  <% @scales.each do |scale| %>
+    <li><%= link_to scale.name, scale_path(scale) %></li>
+  <% end %>
+</ul>

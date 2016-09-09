@@ -1,0 +1,7 @@
+<%= render "layouts/errors", :object => @scale %>
+
+<%= form_for @scale do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
