@@ -1,36 +1,38 @@
 <h1><%= @scale.name %></h1>
 
 <% if @scale.notes.any? %>
-  <%= content_tag :div, class: "freq_information", data: {freq1: @scale.notes[0].frequency } do %>
-  <% end %>
+
   <h4>Here are the notes in this scale:</h4>
   <div class='well'>
     <ul class="list-group">
-      <% @scale.notes.each do |note| %>
+      <% @scale.notes.each_with_index do |note, index| %>
         <li class="list-group-item">
           <%= note.frequency %> |
           <%= link_to "Edit", edit_scale_note_path(@scale, note) %> |
           <%= link_to "Delete", scale_note_path(@scale, note),
                                    :data => {:confirm => "Are you sure?",
                                                   :method => "delete"} %>
+          <%= content_tag :div, class: "freq_information", data: {freq1: @scale.notes[index].frequency, notes: @scale.notes } do %>
+          <% end %>
+
         </li>
+        <hr>
+        <div id="page-wrapper" class="clearfix">
+          <canvas id="synth-pad"></canvas>
+          <div id="info">
+            <h1></h1>
+            <p>
+              Click to hear the note.
+            </p>
+            <p>
+              Frequency: <span id="frequency">n/a</span>
+            </p>
+          </div>
+        </div>
+        <hr>
       <% end %>
     </ul>
   </div>
-  <hr>
-  <div id="page-wrapper" class="clearfix">
-    <canvas id="synth-pad"></canvas>
-    <div id="info">
-      <h1></h1>
-      <p>
-        Click to hear the note.
-      </p>
-      <p>
-        Frequency: <span id="frequency">n/a</span>
-      </p>
-    </div>
-  </div>
-  <hr>
 <% else %>
   <p>This scale has no notes yet!</p>
 <% end %>
