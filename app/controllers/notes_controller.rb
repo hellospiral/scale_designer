@@ -15,7 +15,29 @@ class NotesController < ApplicationController
     end
   end
 
-private
+  def edit
+    @note = Note.find(params[:id])
+    @scale = Scale.find(params[:scale_id])
+  end
+
+  def update
+    @note = Note.find(params[:id])
+    @scale = @note.scale
+    if @note.update(note_params)
+      redirect_to scale_path(@note.scale)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @note = Note.find(params[:id])
+    @note.destroy
+    flash[:notice] = "Note successfully deleted!"
+    redirect_to scale_path(@note.scale)
+  end
+
+  private
   def note_params
     params.require(:note).permit(:frequency)
   end
