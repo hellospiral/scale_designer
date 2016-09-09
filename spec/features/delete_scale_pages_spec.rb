@@ -5,7 +5,7 @@ describe "the delete a scale process" do
     scale = Scale.create(:name => "abcdefg87654321")
     visit scales_path
     click_link 'abcdefg87654321'
-    click_link 'Delete'
+    click_link 'Delete abcdefg87654321'
     expect(page).to have_no_content 'abcdefg87654321'
   end
 end
