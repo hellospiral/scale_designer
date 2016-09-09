@@ -11,16 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 $(document).ready(function() {
   var freq1 = parseFloat($('.freq_information').data('freq1'));
-  var freq2 = parseFloat($('.freq_information').data('freq2'));
 
   console.log(typeof(freq1));
-  console.log(typeof(freq2));
 
 
   var SynthPad = (function() {
@@ -32,11 +30,6 @@ $(document).ready(function() {
     var myAudioContext;
     var oscillator;
     var gainNode;
-
-
-    // Notes
-    var lowNote = freq1;
-    var highNote = freq2;
 
 
 
@@ -156,3 +149,5 @@ $(document).ready(function() {
     var synthPad = new SynthPad();
   }
 });
+
+//= require turbolinks
