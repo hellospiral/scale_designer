@@ -17,6 +17,7 @@ class ScalesController < ApplicationController
       flash[:notice] = "Scale successfully added!"
       redirect_to scales_path
     else
+      flash[:alert] = "Scale did not save! Please try again"
       render :new
     end
   end
@@ -31,6 +32,7 @@ class ScalesController < ApplicationController
       flash[:notice] = "Scale successfully updated!"
       redirect_to scales_path
     else
+      flash[:alert] = "Scale did not update! Please try again"
       render :edit
     end
   end

@@ -11,6 +11,7 @@ class NotesController < ApplicationController
       flash[:notice] = "Note successfully added!"
       redirect_to scale_path(@note.scale)
     else
+      flash[:alert] = "Note was not added! Please try again"
       render :new
     end
   end
@@ -24,8 +25,10 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     @scale = @note.scale
     if @note.update(note_params)
+      flash[:notice] = "Note successfully updated!"
       redirect_to scale_path(@note.scale)
     else
+      flash[:alert] = "Note did not update! Please try again"
       render :edit
     end
   end
