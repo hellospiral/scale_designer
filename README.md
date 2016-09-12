@@ -1,24 +1,31 @@
-# README
+# Scale Designer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### By Matt Carlson
 
-Things you may want to cover:
+## Description
 
-* Ruby version
+Ruby on Rails web app for designing and saving custom musical scales in a just intonation tuning system.
 
-* System dependencies
 
-* Configuration
+## Configuration
 
-* Database creation
+1. `git clone https://github.com/hellospiral/scale_designer.git`
+1. `cd textbook`
+1. `bundle`
+1. `rake db:create && rake db:migrate`
+1. `rails s` and visit [localhost:3000](http://localhost:3000)
 
-* Database initialization
+## Technologies Used
 
-* How to run the test suite
+* Ruby
+* Rails
+* Javascript
+* Web Audio API
+* CSS
+* HTML
 
-* Services (job queues, cache servers, search engines, etc.)
+### License
 
-* Deployment instructions
+This software is licensed under the MIT license.
 
-* ...
+Copyright (c) 2016 Matt Carlson
