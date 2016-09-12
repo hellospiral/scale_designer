@@ -10,7 +10,7 @@ Ruby on Rails web app for designing and saving custom musical scales in a just i
 ## Configuration
 
 1. `git clone https://github.com/hellospiral/scale_designer.git`
-1. `cd textbook`
+1. `cd scale_designer`
 1. `bundle`
 1. `rake db:create && rake db:migrate`
 1. `rails s` and visit [localhost:3000](http://localhost:3000)
