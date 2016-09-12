@@ -23,6 +23,8 @@ Ruby on Rails web app for designing and saving custom musical scales in a just i
 * Web Audio API
 * CSS
 * HTML
+* Rspec
+* Capybara
 
 ### License
 
