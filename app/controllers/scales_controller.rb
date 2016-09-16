@@ -12,13 +12,24 @@ class ScalesController < ApplicationController
   end
 
   def create
-    @scale = Scale.new(scale_params)
-    if @scale.save
-      flash[:notice] = "Scale successfully added!"
-      redirect_to scales_path
+    if current_user
+      @scale = current_user.scales.new(scale_params)
+      if @scale.save
+        flash[:notice] = "Scale successfully added!"
+        redirect_to scales_path
+      else
+        flash[:alert] = "Scale did not save! Please try again"
+        render :new
+      end
     else
-      flash[:alert] = "Scale did not save! Please try again"
-      render :new
+      @scale = Scale.new(scale_params)
+      if @scale.save
+        flash[:notice] = "Scale successfully added!"
+        redirect_to scales_path
+      else
+        flash[:alert] = "Scale did not save! Please try again"
+        render :new
+      end
     end
   end
 
