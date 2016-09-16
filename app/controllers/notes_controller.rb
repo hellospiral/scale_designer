@@ -1,4 +1,6 @@
 class NotesController < ApplicationController
+  before_filter :authenticate_user!, except: [:new, :create]
+
   def new
     @scale = Scale.find(params[:scale_id])
     @note = @scale.notes.new
