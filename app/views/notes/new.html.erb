@@ -1,3 +1,9 @@
 <h1>Add notes to <%= @scale.name %></h1>
 
-<%= render 'form' %>
+<p>Please enter numbers between 20 and 20000, separated by a comma</p>
+
+<%= form_tag [@scale, @note] do %>
+  <%= label_tag :frequencies %>
+  <%= text_field_tag :frequencies %>
+  <p><%= submit_tag %></p>
+<% end %>

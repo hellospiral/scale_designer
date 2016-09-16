@@ -1,9 +1,7 @@
 <%= render('layouts/errors', :object => @note) %>
 
-<h4>Please enter numbers between 20 and 20000, separated by a comma</h4>
-
-<%= form_tag [@scale, @note] do %>
-  <%= label_tag :frequencies %>
-  <%= text_field_tag :frequencies %>
-  <p><%= submit_tag %></p>
+<%= form_for [@scale, @note] do |f| %>
+  <%= f.label :frequency %>
+  <%= f.text_field :frequency %>
+  <p><%= f.submit %></p>
 <% end %>
