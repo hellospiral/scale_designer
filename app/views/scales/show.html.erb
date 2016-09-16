@@ -7,32 +7,17 @@
     <ul class="list-group">
       <% @scale.notes.each_with_index do |note, index| %>
         <li class="list-group-item">
-          <div id="note<%=index%>">
-            <%= note.frequency %> |
-          </div>
+          <%= note.frequency %> |
           <%= link_to "Edit", edit_scale_note_path(@scale, note) %> |
           <%= link_to "Delete", scale_note_path(@scale, note),
                                    :data => {:confirm => "Are you sure?",
                                                   :method => "delete"} %>
-          <%= content_tag :div, class: "freq_information", data: {freq1: @scale.notes[index].frequency, notes: @scale.notes } do %>
+          <%= content_tag :div, class: "freq_information", data: {notes: @scale.notes } do %>
           <% end %>
-
-        </li>
-
-        <!-- <hr>
-        <div id="page-wrapper" class="clearfix">
-          <canvas id="synth-pad"></canvas>
-          <div id="info">
-            <h1></h1>
-            <p>
-              Click to hear the note.
-            </p>
-            <p>
-              Frequency: <span id="frequency"><%=note.frequency%> Hz</span>
-            </p>
+          <div class="floatRight">
+            <button class="note<%=index%> btn btn-success">Play note</button>
           </div>
-        </div>
-        <hr> -->
+        </li>
 
       <% end %>
     </ul>

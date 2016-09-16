@@ -35,14 +35,19 @@ $(document).ready(function() {
     voice.vca.connect(context.destination);
     voice.vco.start(0);
     voices.push(voice);
-    $('#note' + i).click(function() {
-      var clicks = $(this).data('clicks');
-      if (!clicks) {
-         voices[i].vca.gain.value = 1;
-      } else {
-         voices[i].vca.gain.value = 0;
+    $('.note' + i).click(function() {
+      var $this = $(this);
+      $this.toggleClass('note' + i);
+      if($this.hasClass('note' + i)) {
+        $this.text('Play Note');
+        $this.toggleClass("btn-danger").toggleClass("btn-success");
+        voices[i].vca.gain.value = 0;
       }
-      $(this).data("clicks", !clicks);
+      else {
+        $this.text('Stop Note');
+        $this.toggleClass("btn-success").toggleClass("btn-danger");
+        voices[i].vca.gain.value = 1;
+      }
     });
   }
 });
