@@ -5,9 +5,9 @@ describe 'the add a note process' do
     scale = FactoryGirl.create(:scale)
     visit scales_path
     click_link "Something"
-    click_link "Add a note"
-    fill_in "Frequency", :with => "1200"
-    click_on "Create Note"
+    click_link "Add notes to " + scale.name
+    fill_in "Frequencies", :with => "1200"
+    click_on "Add Notes"
     expect(page).to have_content "1200"
   end
 
@@ -15,8 +15,8 @@ describe 'the add a note process' do
     scale = FactoryGirl.create(:scale)
     visit scales_path
     click_link "Something"
-    click_link "Add a note"
-    click_on "Create Note"
-    expect(page).to have_content "errors"
+    click_link "Add notes to " + scale.name
+    click_on "Add Notes"
+    expect(page).to have_content "You must enter at least one frequency"
   end
 end

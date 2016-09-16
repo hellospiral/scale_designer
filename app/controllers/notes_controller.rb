@@ -6,13 +6,18 @@ class NotesController < ApplicationController
 
   def create
     @scale = Scale.find(params[:scale_id])
-    notes_array = params[:frequencies].split(',')
-    notes_array.each do |note|
-      note.strip
-      @scale.notes.create(frequency: note)
+    if params[:frequencies] == ""
+      flash[:alert] = "You must enter at least one frequency"
+      redirect_to new_scale_note_path(@scale)
+    else
+      notes_array = params[:frequencies].split(',')
+      notes_array.each do |note|
+        note.strip
+        @scale.notes.create(frequency: note)
+      end
+      flash[:notice] = "Notes sucessfully added!"
+      redirect_to scale_path(@scale)
     end
-    flash[:notice] = "Notes sucessfully added!"
-    redirect_to scale_path(@scale)
   end
 
   def edit

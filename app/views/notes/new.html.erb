@@ -5,5 +5,5 @@
 <%= form_tag [@scale, @note] do %>
   <%= label_tag :frequencies %>
   <%= text_field_tag :frequencies %>
-  <p><%= submit_tag %></p>
+  <p><%= submit_tag "Add Notes", class: "btn btn-primary"%></p>
 <% end %>
