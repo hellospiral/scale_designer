@@ -7,7 +7,9 @@
     <ul class="list-group">
       <% @scale.notes.each_with_index do |note, index| %>
         <li class="list-group-item">
-          <%= note.frequency %> |
+          <div id="note<%=index%>">
+            <%= note.frequency %> |
+          </div>
           <%= link_to "Edit", edit_scale_note_path(@scale, note) %> |
           <%= link_to "Delete", scale_note_path(@scale, note),
                                    :data => {:confirm => "Are you sure?",
@@ -16,7 +18,8 @@
           <% end %>
 
         </li>
-        <hr>
+
+        <!-- <hr>
         <div id="page-wrapper" class="clearfix">
           <canvas id="synth-pad"></canvas>
           <div id="info">
@@ -25,11 +28,12 @@
               Click to hear the note.
             </p>
             <p>
-              Frequency: <span id="frequency">n/a</span>
+              Frequency: <span id="frequency"><%=note.frequency%> Hz</span>
             </p>
           </div>
         </div>
-        <hr>
+        <hr> -->
+
       <% end %>
     </ul>
   </div>
