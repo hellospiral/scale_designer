@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'the edit a scale process' do
   it "edits a scale" do
-    scale = Scale.create(:name => "Something")
+    scale = FactoryGirl.create(:scale)
     visit scale_path(scale)
     click_link "Edit Scale Name"
     fill_in "Name", :with => "Something cool"
@@ -11,7 +11,7 @@ describe 'the edit a scale process' do
   end
 
   it "gives error when no fields are filled out" do
-    scale = Scale.create(:name => "Something")
+    scale = FactoryGirl.create(:scale)
     visit scale_path(scale)
     click_link "Edit Scale Name"
     fill_in "Name", :with => ""

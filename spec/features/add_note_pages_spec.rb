@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'the add a note process' do
   it "adds a new note" do
-    scale = Scale.create(:name => "Something")
+    scale = FactoryGirl.create(:scale)
     visit scales_path
     click_link "Something"
     click_link "Add a note"
@@ -12,7 +12,7 @@ describe 'the add a note process' do
   end
 
   it "gives error when no fields are filled out" do
-    scale = Scale.create(:name => "Something")
+    scale = FactoryGirl.create(:scale)
     visit scales_path
     click_link "Something"
     click_link "Add a note"
