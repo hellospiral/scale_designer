@@ -1,5 +1,16 @@
 <h1><%= @scale.name %></h1>
-
+<% if current_user == @scale.user %>
+  <div class="outer">
+    <div class="inner">
+      <%= link_to "Edit Scale Name", edit_scale_path(@scale), class:"btn btn-warning btn-outline btn-xs" %>
+    </div>
+    <div class="inner">
+      <%= link_to "Delete Scale", scale_path(@scale), class: "btn btn-danger btn-outline btn-xs",
+                               :data => {:confirm => "You sure?",
+                                         :method => "delete"} %>
+    </div>
+  </div>
+<% end %>
 <% if @scale.notes.any? %>
 
   <h4>Here are the notes in this scale:</h4>
@@ -8,7 +19,7 @@
       <% @scale.notes.each_with_index do |note, index| %>
         <li class="list-group-item">
           <%= note.frequency %>
-          <% if @scale.user == current_user %>
+          <% if @scale.user == current_user || !@scale.user %>
             | <%= link_to "Edit", edit_scale_note_path(@scale, note) %> |
             <%= link_to "Delete", scale_note_path(@scale, note),
                                      :data => {:confirm => "Are you sure?",
@@ -25,17 +36,9 @@
     </ul>
   </div>
 <% else %>
-  <p>This scale has no notes yet!</p>
+  <p class="bufferText">This scale has no notes yet!</p>
 <% end %>
-<% if current_user == @scale.user %>
-  <p><%= link_to "Add notes to " + @scale.name, new_scale_note_path(@scale) %></p>
-
-
-  <p><%= link_to "Edit Scale Name", edit_scale_path(@scale) %></p>
-  <p><%= link_to "Delete " + @scale.name, scale_path(@scale),
-                           :data => {:confirm => "You sure?",
-                                     :method => "delete"} %></p>
+<% if current_user == @scale.user || !@scale.user %>
+  <p><%= link_to "Add some notes", new_scale_note_path(@scale), class: "btn btn-primary btn-outline" %></p>
 <% end %>
 <hr>
-
-<p><%= link_to "Back to scales", scales_path %></p>

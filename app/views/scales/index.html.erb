@@ -1,13 +1,15 @@
-<h1>Current Scales:</h1>
+<h1>Recent Scales:</h1>
 
 <br>
 
 <% if @scales.any? %>
-  <ul>
-    <% @scales.each do |scale| %>
-      <li><%= link_to scale.name, scale_path(scale) %></li>
-    <% end %>
-  </ul>
+  <div class="well">
+    <ul class="list-group">
+      <% @scales.each do |scale| %>
+        <li class="list-group-item"><%= link_to scale.name, scale_path(scale) %></li>
+      <% end %>
+    </ul>
+  </div>
 
 <% else %>
   <h5>There are no scales, click below to add one</h5>
@@ -15,5 +17,6 @@
 <% end %>
 
 <hr>
-
-<%= link_to "Add a Scale", new_scale_path %>
+<div class="bigButton">
+  <%= link_to "Add a Scale", new_scale_path, class: "btn btn-primary btn-outline btn-lg" %>
+</div>

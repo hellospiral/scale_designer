@@ -27,7 +27,7 @@ class ScalesController < ApplicationController
       @scale = Scale.new(scale_params)
       if @scale.save
         flash[:notice] = "Scale successfully added!"
-        redirect_to scales_path
+        redirect_to scale_path(@scale)
       else
         flash[:alert] = "Scale did not save! Please try again"
         render :new

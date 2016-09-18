@@ -1,7 +1,11 @@
 <%= render "layouts/errors", :object => @scale %>
 
 <%= form_for @scale do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="bigButton">
+    <%= f.submit class: "btn btn-primary btn-lg btn-outline"%>
+  </div>
 <% end %>
