@@ -28,6 +28,10 @@ class NotesController < ApplicationController
   def edit
     @note = Note.find(params[:id])
     @scale = Scale.find(params[:scale_id])
+    respond_to do |format|
+      format.html {redirect_to scale_path(@scale)}
+      format.js
+    end
   end
 
   def update
@@ -35,7 +39,10 @@ class NotesController < ApplicationController
     @scale = @note.scale
     if @note.update(note_params)
       flash[:notice] = "Note successfully updated!"
-      redirect_to scale_path(@note.scale)
+      respond_to do |format|
+        format.html {redirect_to scale_path(@scale)}
+        format.js
+      end
     else
       flash[:alert] = "Note did not update! Please try again"
       render :edit

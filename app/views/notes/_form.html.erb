@@ -1,7 +1,9 @@
 <%= render('layouts/errors', :object => @note) %>
 
-<%= form_for [@scale, @note] do |f| %>
-  <%= f.label :frequency %>
-  <%= f.text_field :frequency %>
+<%= form_for [@scale, @note], remote: true do |f| %>
+  <div class="form-group">
+    <%= f.label :frequency %>
+    <%= f.text_field :frequency, class: 'form-control' %>
+  </div>
   <p><%= f.submit class: "btn btn-success btn-sm btn-outline" %></p>
 <% end %>

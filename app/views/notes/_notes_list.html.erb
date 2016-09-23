@@ -3,9 +3,9 @@
   <ul class="list-group">
     <% @scale.notes.each_with_index do |note, index| %>
       <li class="list-group-item">
-        <%= note.frequency %>
+        <span id="note_freq-<%=note.id%>"><%= note.frequency %></span>
         <% if @scale.user == current_user || !@scale.user %>
-          | <%= link_to "Edit", edit_scale_note_path(@scale, note) %> |
+          | <%= link_to "Edit", edit_scale_note_path(@scale, note), remote: true %> |
           <%= link_to "Delete", scale_note_path(@scale, note),
                                    :data => {:confirm => "Are you sure?",
                                                   :method => "delete"} %>
