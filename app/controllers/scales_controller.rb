@@ -1,5 +1,4 @@
 class ScalesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show, :new, :create]
 
   def index
     @scales = Scale.all
