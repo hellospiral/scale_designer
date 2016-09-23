@@ -17,7 +17,7 @@ describe 'the edit a note process' do
     expect(page).to have_content "1300"
   end
 
-  it "gives an error if a field is blank" do
+  it "gives an error if a field is blank", js: true do
     user = User.create(email: "matt@matt.com", password: "password")
     scale = FactoryGirl.create(:scale, user_id: user.id)
     note = FactoryGirl.create(:note, scale_id: scale.id)

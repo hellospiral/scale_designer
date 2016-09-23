@@ -15,7 +15,7 @@ describe 'the edit a scale process' do
     expect(page).to have_content "Something cool"
   end
 
-  it "gives error when no fields are filled out" do
+  it "gives error when no fields are filled out", js: true do
     user = User.create(email: "matt@matt.com", password: "password")
     scale = FactoryGirl.create(:scale, user_id: user.id)
     visit new_user_session_path

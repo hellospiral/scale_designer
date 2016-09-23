@@ -1,6 +1,4 @@
 class NotesController < ApplicationController
-  
-
   def new
     @scale = Scale.find(params[:scale_id])
     @note = @scale.notes.new
@@ -54,6 +52,9 @@ class NotesController < ApplicationController
       format.html {redirect_to scale_path(@scale)}
       format.js
     end
+  end
+
+  def show
   end
 
   private
