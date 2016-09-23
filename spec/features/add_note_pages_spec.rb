@@ -11,7 +11,7 @@ describe 'the add a note process', js: true do
     expect(page).to have_content "1200"
   end
 
-  it "gives error when no fields are filled out" do
+  it "gives error when no fields are filled out", js: true do
     scale = FactoryGirl.create(:scale)
     visit scales_path
     click_link "Something"
