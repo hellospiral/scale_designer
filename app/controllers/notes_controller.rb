@@ -17,10 +17,10 @@ class NotesController < ApplicationController
         note.strip
         @scale.notes.create(frequency: note)
       end
-      flash[:notice] = "Notes sucessfully added!"
+
       respond_to do |format|
         format.html {redirect_to scale_path(@scale)}
-        format.js
+        format.js { flash[:notice] = "Notes sucessfully added!" }
       end
     end
   end
@@ -47,9 +47,13 @@ class NotesController < ApplicationController
 
   def destroy
     @note = Note.find(params[:id])
+    @scale = @note.scale
     @note.destroy
     flash[:notice] = "Note successfully deleted!"
-    redirect_to scale_path(@note.scale)
+    respond_to do |format|
+      format.html {redirect_to scale_path(@scale)}
+      format.js
+    end
   end
 
   private

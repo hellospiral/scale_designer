@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'the edit a scale process' do
-  it "edits a scale" do
+  it "edits a scale", js: true do
     user = User.create(email: "matt@matt.com", password: "password")
     scale = FactoryGirl.create(:scale, user_id: user.id)
     visit new_user_session_path

@@ -1,0 +1,38 @@
+$('#notes_list').html("<%= j render :partial => 'notes_list', :object => @scale.notes %>");
+
+$(document).ready(function() {
+  var context = new AudioContext;
+  var notes = $('.freq_information').data('notes');
+  var notesArray = [];
+  var voices = [];
+
+  notes.forEach(function(note) {
+    notesArray.push(note.frequency);
+  });
+
+  for (let i = 0; i < notesArray.length; i++) {
+    var voice = {};
+    voice.vco = context.createOscillator();
+    voice.vco.frequency.value = notesArray[i];
+    voice.vca = context.createGain();
+    voice.vca.gain.value = 0;
+    voice.vco.connect(voice.vca);
+    voice.vca.connect(context.destination);
+    voice.vco.start(0);
+    voices.push(voice);
+    $('.note' + i).click(function() {
+      var $this = $(this);
+      $this.toggleClass('note' + i);
+      if($this.hasClass('note' + i)) {
+        $this.text('Play Note');
+        $this.toggleClass("btn-danger").toggleClass("btn-success");
+        voices[i].vca.gain.value = 0;
+      }
+      else {
+        $this.text('Stop Note');
+        $this.toggleClass("btn-success").toggleClass("btn-danger");
+        voices[i].vca.gain.value = 1;
+      }
+    });
+  }
+});
