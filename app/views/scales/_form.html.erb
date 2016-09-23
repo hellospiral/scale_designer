@@ -1,6 +1,6 @@
 <%= render "layouts/errors", :object => @scale %>
 
-<%= form_for @scale do |f| %>
+<%= form_for @scale, html: {id: :add_scale_form}, remote: true do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>

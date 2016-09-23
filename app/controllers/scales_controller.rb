@@ -18,7 +18,10 @@ class ScalesController < ApplicationController
       @scale = current_user.scales.new(scale_params)
       if @scale.save
         flash[:notice] = "Scale successfully added!"
-        redirect_to scales_path
+        respond_to do |format|
+          format.html {redirect_to scale_path(@scale)}
+          format.js
+        end
       else
         flash[:alert] = "Scale did not save! Please try again"
         render :new
@@ -27,7 +30,10 @@ class ScalesController < ApplicationController
       @scale = Scale.new(scale_params)
       if @scale.save
         flash[:notice] = "Scale successfully added!"
-        redirect_to scale_path(@scale)
+        respond_to do |format|
+          format.html {redirect_to scale_path(@scale)}
+          format.js
+        end
       else
         flash[:alert] = "Scale did not save! Please try again"
         render :new

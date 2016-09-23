@@ -4,7 +4,7 @@
 
 <% if @scales.any? %>
   <div class="well">
-    <ul class="list-group">
+    <ul id="scales_list" class="list-group">
       <% @scales.each do |scale| %>
         <li class="list-group-item"><%= link_to scale.name, scale_path(scale) %></li>
       <% end %>
@@ -17,6 +17,6 @@
 <% end %>
 
 <hr>
-<div class="bigButton">
-  <%= link_to "Add a Scale", new_scale_path, class: "btn btn-primary btn-outline btn-lg" %>
+<div id= "newScaleButton" class="bigButton">
+  <%= link_to "Add a Scale", new_scale_path, class: "btn btn-primary btn-outline btn-lg", remote: true %>
 </div>
