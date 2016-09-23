@@ -11,34 +11,18 @@
     </div>
   </div>
 <% end %>
-<% if @scale.notes.any? %>
-
-  <h4>Here are the notes in this scale:</h4>
-  <div class='well'>
-    <ul class="list-group">
-      <% @scale.notes.each_with_index do |note, index| %>
-        <li class="list-group-item">
-          <%= note.frequency %>
-          <% if @scale.user == current_user || !@scale.user %>
-            | <%= link_to "Edit", edit_scale_note_path(@scale, note) %> |
-            <%= link_to "Delete", scale_note_path(@scale, note),
-                                     :data => {:confirm => "Are you sure?",
-                                                    :method => "delete"} %>
-          <% end %>
-          <%= content_tag :div, class: "freq_information", data: {notes: @scale.notes } do %>
-          <% end %>
-          <div class="floatRight">
-            <button class="note<%=index%> btn btn-success">Play note</button>
-          </div>
-        </li>
-
-      <% end %>
-    </ul>
-  </div>
-<% else %>
-  <p class="bufferText">This scale has no notes yet!</p>
-<% end %>
+<div id="notes_list">
+  <% if @scale.notes.any? %>
+    <%= render :partial => 'notes/notes_list', :object => @scale.notes %>
+  <% else %>
+    <p class="bufferText">This scale has no notes yet!</p>
+  <% end %>
+</div>
 <% if current_user == @scale.user || !@scale.user %>
-  <p><%= link_to "Add some notes", new_scale_note_path(@scale), class: "btn btn-primary btn-outline" %></p>
+  <%= link_to "Add some notes", new_scale_note_path(@scale), class: "btn btn-primary btn-outline", id: 'add_notes_link', remote: true %>
 <% end %>
+<div id="add_notes_form">
+</div>
 <hr>
+
+<%= javascript_include_tag "show_scale" %>

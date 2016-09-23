@@ -18,7 +18,10 @@ class NotesController < ApplicationController
         @scale.notes.create(frequency: note)
       end
       flash[:notice] = "Notes sucessfully added!"
-      redirect_to scale_path(@scale)
+      respond_to do |format|
+        format.html {redirect_to scale_path(@scale)}
+        format.js
+      end
     end
   end
 

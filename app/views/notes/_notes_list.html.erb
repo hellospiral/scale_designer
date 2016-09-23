@@ -1,0 +1,22 @@
+<h4>Here are the notes in this scale:</h4>
+<div class='well'>
+  <ul class="list-group">
+    <% @scale.notes.each_with_index do |note, index| %>
+      <li class="list-group-item">
+        <%= note.frequency %>
+        <% if @scale.user == current_user || !@scale.user %>
+          | <%= link_to "Edit", edit_scale_note_path(@scale, note) %> |
+          <%= link_to "Delete", scale_note_path(@scale, note),
+                                   :data => {:confirm => "Are you sure?",
+                                                  :method => "delete"} %>
+        <% end %>
+        <%= content_tag :div, class: "freq_information", data: {notes: @scale.notes } do %>
+        <% end %>
+        <div class="floatRight">
+          <button class="note<%=index%> btn btn-success">Play note</button>
+        </div>
+      </li>
+
+    <% end %>
+  </ul>
+</div>

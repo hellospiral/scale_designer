@@ -1,10 +1,8 @@
 <% if current_user == @scale.user %>
 
-  <h1>Add notes to <%= @scale.name %></h1>
-
   <p>Please enter numbers between 20 and 20000, separated by a comma</p>
 
-  <%= form_tag [@scale, @note] do %>
+  <%= form_tag [@scale, @note], remote: true do %>
     <div class="form-group">
       <%= label_tag :frequencies %>
       <%= text_field_tag :frequencies, "", class:'form-control'%>
