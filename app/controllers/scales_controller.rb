@@ -49,7 +49,10 @@ class ScalesController < ApplicationController
     @scale= Scale.find(params[:id])
     if @scale.update(scale_params)
       flash[:notice] = "Scale successfully updated!"
-      redirect_to scales_path
+      respond_to do |format|
+        format.html {redirect_to scale_path(@scale)}
+        format.js
+      end
     else
       flash[:alert] = "Scale did not update! Please try again"
       render :edit

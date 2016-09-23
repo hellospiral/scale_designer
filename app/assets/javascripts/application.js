@@ -20,10 +20,11 @@ $(document).ready(function() {
   var notesArray = [];
   var voices = [];
 
-  notes.forEach(function(note) {
-    notesArray.push(note.frequency);
-  });
-
+  if (notes !== undefined) {
+    notes.forEach(function(note) {
+      notesArray.push(note.frequency);
+    });
+  }
   for (let i = 0; i < notesArray.length; i++) {
     var voice = {};
     voice.vco = context.createOscillator();
