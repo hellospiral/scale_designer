@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'the add a note process' do
+describe 'the add a note process', js: true do
   it "adds a new note" do
     scale = FactoryGirl.create(:scale)
     visit scales_path
