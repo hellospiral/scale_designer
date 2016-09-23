@@ -659,6 +659,9 @@
         2,
         1,
         1,
+        2,
+        1,
+        null,
         null,
         1,
         1,
@@ -832,6 +835,7 @@
       ],
       "/Users/hellospiral/Desktop/ji_scale_designer/spec/features/edit_note_pages_spec.rb": [
         1,
+        1,
         null,
         1,
         1,
@@ -937,6 +941,6 @@
         null
       ]
     },
-    "timestamp": 1474662847
+    "timestamp": 1474666846
   }
 }

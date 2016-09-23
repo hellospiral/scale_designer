@@ -28,10 +28,6 @@ class NotesController < ApplicationController
   def edit
     @note = Note.find(params[:id])
     @scale = Scale.find(params[:scale_id])
-    respond_to do |format|
-      format.html {redirect_to scale_path(@scale)}
-      format.js
-    end
   end
 
   def update
