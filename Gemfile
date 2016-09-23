@@ -22,6 +22,8 @@ group :development, :test do
   gem 'capybara'
   gem "factory_girl_rails", "~> 4.0"
   gem 'simplecov', :require => false
+  gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :development do

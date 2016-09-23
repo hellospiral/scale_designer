@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "the add a scale process" do
+describe "the add a scale process", js: true do
   it "adds a new scale" do
     visit scales_path
     click_link 'Add a Scale'
