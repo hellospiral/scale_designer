@@ -1,7 +1,7 @@
 <h4>Here are the notes in this scale:</h4>
 <div class='well'>
   <ul class="list-group">
-    <% @scale.notes.each_with_index do |note, index| %>
+    <% @scale.notes.order(:frequency).each_with_index do |note, index| %>
       <li class="list-group-item">
         <span id="note_freq-<%=note.id%>"><%= note.frequency %></span>
         <% if @scale.user == current_user || !@scale.user %>

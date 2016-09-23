@@ -16,7 +16,9 @@
 //= require_tree .
 $(document).ready(function() {
   var context = new AudioContext;
-  var notes = $('.freq_information').data('notes');
+  var notes = $('.freq_information').data('notes').sort(function(a, b) {
+    return parseFloat(a.frequency) - parseFloat(b.frequency);
+  });
   var notesArray = [];
   var voices = [];
 
