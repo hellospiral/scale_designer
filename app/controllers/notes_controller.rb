@@ -15,6 +15,16 @@ class NotesController < ApplicationController
         @scale = note.scale
         new_note = @scale.notes.create(frequency: note.frequency * 1.166666667)
         redirect_to scale_path(@scale)
+      elsif params['third_type'] == 'Major (5/4)'
+        note = Note.find(params['format'])
+        @scale = note.scale
+        new_note = @scale.notes.create(frequency: note.frequency * 1.25)
+        redirect_to scale_path(@scale)
+      elsif params['third_type'] == 'Minor (6/5)'
+        note = Note.find(params['format'])
+        @scale = note.scale
+        new_note = @scale.notes.create(frequency: note.frequency * 1.2)
+        redirect_to scale_path(@scale)
       end
     else
       notes_array = params[:frequencies].split(',')
