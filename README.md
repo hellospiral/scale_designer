@@ -21,8 +21,8 @@ Ruby on Rails web app for designing and saving custom musical scales in a just i
 1. Enable the Google+ API and the Contacts API in the Google Developer Console
 1. Specify the redirect URI as 'http://localhost:3000/users/auth/google_oauth2/callback'
 1. In the root directory of the repo, create a .env file
-1. Inside of .env, add `CLIENT_ID=[your client id]
-CLIENT_SECRET=[your client secret]`
+1. Inside of .env, add `CLIENT_ID=your client id
+CLIENT_SECRET=your client secret`
 
 
 ## Technologies Used
