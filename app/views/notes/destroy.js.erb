@@ -1,8 +1,10 @@
-$('#notes_list').html("<%= j render :partial => 'notes_list', :object => @scale.notes %>");
+$('#notes_list').html("<%= j render :partial => 'notes_list', :object => @scale.notes.order(:frequency) %>");
 
 $(document).ready(function() {
   var context = new AudioContext;
-  var notes = $('.freq_information').data('notes');
+  var notes = $('.freq_information').data('notes').sort(function(a, b) {
+    return parseFloat(a.frequency) - parseFloat(b.frequency);
+  });
   var notesArray = [];
   var voices = [];
 

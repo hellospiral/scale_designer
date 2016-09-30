@@ -10,20 +10,15 @@ class NotesController < ApplicationController
       flash[:alert] = "You must enter at least one frequency"
       redirect_to new_scale_note_path(@scale)
     elsif params['third_type']
+      note = Note.find(params['format'])
       if params['third_type'] == 'Septimal minor (7/6)'
-        note = Note.find(params['format'])
-        @scale = note.scale
-        new_note = @scale.notes.create(frequency: note.frequency * 1.166666667)
+        @scale.notes.create(frequency: note.frequency * 1.166666667)
         redirect_to scale_path(@scale)
       elsif params['third_type'] == 'Major (5/4)'
-        note = Note.find(params['format'])
-        @scale = note.scale
-        new_note = @scale.notes.create(frequency: note.frequency * 1.25)
+        @scale.notes.create(frequency: note.frequency * 1.25)
         redirect_to scale_path(@scale)
       elsif params['third_type'] == 'Minor (6/5)'
-        note = Note.find(params['format'])
-        @scale = note.scale
-        new_note = @scale.notes.create(frequency: note.frequency * 1.2)
+        @scale.notes.create(frequency: note.frequency * 1.2)
         redirect_to scale_path(@scale)
       end
     else
