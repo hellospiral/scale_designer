@@ -12,9 +12,14 @@
         <% end %>
         <%= content_tag :div, class: "freq_information", data: {notes: @scale.notes } do %>
         <% end %>
-        <div class="floatRight">
-          <button class="note<%=index%> btn btn-success">Play note</button>
-        </div>
+        <%= form_tag scale_notes_path(@scale, note), remote: true do %>
+          <%= label_tag :third_type %>
+          <%= select_tag :third_type, options_for_select([ "Major (5/4)", "Minor (6/5)", "Septimal minor (7/6)"]) %>
+          <%= submit_tag "Add Third", class: "btn btn-outline btn-success btn-sm"%>
+        <% end %>
+          <div class="floatRight">
+            <button class="note<%=index%> btn btn-success">Play note</button>
+          </div>
       </li>
 
     <% end %>

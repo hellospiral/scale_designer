@@ -9,6 +9,13 @@ class NotesController < ApplicationController
     if params[:frequencies] == ""
       flash[:alert] = "You must enter at least one frequency"
       redirect_to new_scale_note_path(@scale)
+    elsif params['third_type']
+      if params['third_type'] == 'Septimal minor (7/6)'
+        note = Note.find(params['format'])
+        @scale = note.scale
+        new_note = @scale.notes.create(frequency: note.frequency * 1.166666667)
+        redirect_to scale_path(@scale)
+      end
     else
       notes_array = params[:frequencies].split(',')
       notes_array.each do |note|
