@@ -12,6 +12,8 @@ gem 'jquery-turbolinks', '~> 2.1'
 gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
