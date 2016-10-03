@@ -21,6 +21,25 @@ class NotesController < ApplicationController
         @scale.notes.create(frequency: note.frequency * 1.2)
         redirect_to scale_path(@scale)
       end
+    elsif params['fifth']
+      note = Note.find(params['format'])
+      @scale.notes.create(frequency: note.frequency * 1.5)
+      redirect_to scale_path(@scale)
+    elsif params['seventh_type']
+      note = Note.find(params['format'])
+      if params['seventh_type'] == 'Major (15/8)'
+        @scale.notes.create(frequency: note.frequency * 1.875)
+        redirect_to scale_path(@scale)
+      elsif params['seventh_type'] == 'Minor (9/5)'
+        @scale.notes.create(frequency: note.frequency * 1.8)
+        redirect_to scale_path(@scale)
+      elsif params['seventh_type'] == 'Pythagorean minor (16/9)'
+        @scale.notes.create(frequency: note.frequency * 1.777777778)
+        redirect_to scale_path(@scale)
+      elsif params['seventh_type'] == 'Harmonic minor (7/4)'
+        @scale.notes.create(frequency: note.frequency * 1.75)
+        redirect_to scale_path(@scale)
+      end
     else
       notes_array = params[:frequencies].split(',')
       notes_array.each do |note|
