@@ -32,6 +32,9 @@ class NotesController < ApplicationController
       elsif params['seventh_type'] == 'Harmonic minor (7/4)'
         @scale.notes.create(frequency: note.frequency * 1.75)
       end
+    elsif params['octave']
+      note = Note.find(params['note_id'])
+      @scale.notes.create(frequency: note.frequency * 2)
     else
       notes_array = params[:frequencies].split(',')
       notes_array.each do |note|
