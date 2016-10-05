@@ -10,7 +10,7 @@ class NotesController < ApplicationController
       flash[:alert] = "You must enter at least one frequency"
       redirect_to new_scale_note_path(@scale)
     elsif params['third_type']
-      note = Note.find(params['format'])
+      note = Note.find(params['note_id'])
       if params['third_type'] == 'Septimal minor (7/6)'
         @scale.notes.create(frequency: note.frequency * 1.166666667)
       elsif params['third_type'] == 'Major (5/4)'
@@ -18,13 +18,11 @@ class NotesController < ApplicationController
       elsif params['third_type'] == 'Minor (6/5)'
         @scale.notes.create(frequency: note.frequency * 1.2)
       end
-      redirect_to scale_path(@scale)
     elsif params['fifth']
-      note = Note.find(params['format'])
+      note = Note.find(params['note_id'])
       @scale.notes.create(frequency: note.frequency * 1.5)
-      redirect_to scale_path(@scale)
     elsif params['seventh_type']
-      note = Note.find(params['format'])
+      note = Note.find(params['note_id'])
       if params['seventh_type'] == 'Major (15/8)'
         @scale.notes.create(frequency: note.frequency * 1.875)
       elsif params['seventh_type'] == 'Minor (9/5)'
@@ -34,17 +32,16 @@ class NotesController < ApplicationController
       elsif params['seventh_type'] == 'Harmonic minor (7/4)'
         @scale.notes.create(frequency: note.frequency * 1.75)
       end
-      redirect_to scale_path(@scale)
     else
       notes_array = params[:frequencies].split(',')
       notes_array.each do |note|
         note.strip
         @scale.notes.create(frequency: note)
       end
-      respond_to do |format|
-        format.html {redirect_to scale_path(@scale)}
-        format.js { flash[:notice] = "Notes sucessfully added!" }
-      end
+    end
+    respond_to do |format|
+      format.html {redirect_to scale_path(@scale)}
+      format.js
     end
   end
 
