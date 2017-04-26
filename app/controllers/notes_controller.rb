@@ -8,43 +8,13 @@ class NotesController < ApplicationController
     @scale = Scale.find(params[:scale_id])
     if params[:frequencies] == ""
       flash[:alert] = "You must enter at least one frequency"
-      redirect_to new_scale_note_path(@scale)
-    elsif params['third_type']
-      note = Note.find(params['note_id'])
-      if params['third_type'] == 'Septimal minor (7/6)'
-        @scale.notes.create(frequency: note.frequency * 1.166666667)
-      elsif params['third_type'] == 'Major (5/4)'
-        @scale.notes.create(frequency: note.frequency * 1.25)
-      elsif params['third_type'] == 'Minor (6/5)'
-        @scale.notes.create(frequency: note.frequency * 1.2)
-      end
-    elsif params['fifth']
-      note = Note.find(params['note_id'])
-      @scale.notes.create(frequency: note.frequency * 1.5)
-    elsif params['seventh_type']
-      note = Note.find(params['note_id'])
-      if params['seventh_type'] == 'Major (15/8)'
-        @scale.notes.create(frequency: note.frequency * 1.875)
-      elsif params['seventh_type'] == 'Minor (9/5)'
-        @scale.notes.create(frequency: note.frequency * 1.8)
-      elsif params['seventh_type'] == 'Pythagorean minor (16/9)'
-        @scale.notes.create(frequency: note.frequency * 1.777777778)
-      elsif params['seventh_type'] == 'Harmonic minor (7/4)'
-        @scale.notes.create(frequency: note.frequency * 1.75)
-      end
-    elsif params['octave']
-      note = Note.find(params['note_id'])
-      @scale.notes.create(frequency: note.frequency * 2)
+      return redirect_to new_scale_note_path(@scale)
     else
-      notes_array = params[:frequencies].split(',')
-      notes_array.each do |note|
-        note.strip
-        @scale.notes.create(frequency: note)
+      @scale.create_note(params)
+      respond_to do |format|
+        format.html {redirect_to scale_path(@scale)}
+        format.js
       end
-    end
-    respond_to do |format|
-      format.html {redirect_to scale_path(@scale)}
-      format.js
     end
   end
 
