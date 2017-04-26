@@ -57,6 +57,26 @@
           <% end %>
         </div>
 
+        <div class="form-row">
+          <%= form_tag scale_note_path(@scale, note), class: 'form-inline', method: 'patch', remote: true do %>
+            <div class='form-group'>
+              <%= hidden_field_tag 'transposition', 'up_octave' %>
+            </div>
+            <%= submit_tag "octave up", class: "btn btn-outline btn-primary btn-sm"%>
+          <% end %>
+        </div>
+
+        <div class="form-row">
+          <%= form_tag scale_note_path(@scale, note), class: 'form-inline', method: 'patch', remote: true do %>
+            <div class='form-group'>
+              <%= hidden_field_tag 'transposition', 'down_octave' %>
+            </div>
+            <%= submit_tag "octave down", class: "btn btn-outline btn-primary btn-sm"%>
+          <% end %>
+        </div>
+
+        <br>
+
         <div class="floatRight">
           <button class="note<%=index%> btn btn-success">Play note</button>
         </div>

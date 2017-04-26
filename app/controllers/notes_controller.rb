@@ -24,9 +24,16 @@ class NotesController < ApplicationController
   end
 
   def update
-    @note = Note.find(params[:id])
-    @scale = @note.scale
-    if @note.update(note_params)
+    @scale = Scale.find(params[:scale_id])
+    @note = @scale.notes.find(params[:id])
+    if params[:transposition]
+      @note.transpose(params)
+      flash[:notice] = "Note successfully updated!"
+      respond_to do |format|
+        format.html {redirect_to scale_path(@scale)}
+        format.js
+      end
+    elsif @note.update(note_params)
       flash[:notice] = "Note successfully updated!"
       respond_to do |format|
         format.html {redirect_to scale_path(@scale)}
@@ -54,6 +61,6 @@ class NotesController < ApplicationController
 
   private
   def note_params
-    params.require(:note).permit(:frequency)
+    params.require(:note).permit(:frequency, :transposition)
   end
 end
