@@ -17,41 +17,44 @@
 //= require_tree .
 $(document).ready(function() {
   var context = new AudioContext;
-  var notes = $('.freq_information').data('notes').sort(function(a, b) {
-    return parseFloat(a.frequency) - parseFloat(b.frequency);
-  });
-  var notesArray = [];
-  var voices = [];
+  if ($('.freq_information').length > 0 ) {
 
-  if (notes !== undefined) {
-    notes.forEach(function(note) {
-      notesArray.push(note.frequency);
+    var notes = $('.freq_information').data('notes').sort(function(a, b) {
+      return parseFloat(a.frequency) - parseFloat(b.frequency);
     });
-  }
-  for (let i = 0; i < notesArray.length; i++) {
-    var voice = {};
-    voice.vco = context.createOscillator();
-    voice.vco.frequency.value = notesArray[i];
-    voice.vca = context.createGain();
-    voice.vca.gain.value = 0;
-    voice.vco.connect(voice.vca);
-    voice.vca.connect(context.destination);
-    voice.vco.start(0);
-    voices.push(voice);
-    $('.note' + i).click(function() {
-      var $this = $(this);
-      $this.toggleClass('note' + i);
-      if($this.hasClass('note' + i)) {
-        $this.text('Play Note');
-        $this.toggleClass("btn-danger").toggleClass("btn-success");
-        voices[i].vca.gain.value = 0;
-      }
-      else {
-        $this.text('Stop Note');
-        $this.toggleClass("btn-success").toggleClass("btn-danger");
-        voices[i].vca.gain.value = 1;
-      }
-    });
+    var notesArray = [];
+    var voices = [];
+
+    if (notes !== undefined) {
+      notes.forEach(function(note) {
+        notesArray.push(note.frequency);
+      });
+    }
+    for (let i = 0; i < notesArray.length; i++) {
+      var voice = {};
+      voice.vco = context.createOscillator();
+      voice.vco.frequency.value = notesArray[i];
+      voice.vca = context.createGain();
+      voice.vca.gain.value = 0;
+      voice.vco.connect(voice.vca);
+      voice.vca.connect(context.destination);
+      voice.vco.start(0);
+      voices.push(voice);
+      $('.note' + i).click(function() {
+        var $this = $(this);
+        $this.toggleClass('note' + i);
+        if($this.hasClass('note' + i)) {
+          $this.text('Play Note');
+          $this.toggleClass("btn-danger").toggleClass("btn-success");
+          voices[i].vca.gain.value = 0;
+        }
+        else {
+          $this.text('Stop Note');
+          $this.toggleClass("btn-success").toggleClass("btn-danger");
+          voices[i].vca.gain.value = 1;
+        }
+      });
+    }
   }
 });
 
