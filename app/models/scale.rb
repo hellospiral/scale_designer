@@ -42,7 +42,7 @@ class Scale < ActiveRecord::Base
   end
 
   def create_note(params)
-    if params[:note_id]
+    if params['note_id']
       note = self.notes.find(params['note_id'])
     end
     if params['third_type']
