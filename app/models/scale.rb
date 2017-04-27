@@ -3,8 +3,7 @@ class Scale < ActiveRecord::Base
   belongs_to :user, optional: true
   validates :name, :presence => true
 
-  def create_third(params)
-    note = self.notes.find(params['note_id'])
+  def create_third(params, note)
     if params['third_type'] == 'Septimal minor (7/6)'
       self.notes.create(frequency: note.frequency * 1.166666667)
     elsif params['third_type'] == 'Major (5/4)'
@@ -14,13 +13,11 @@ class Scale < ActiveRecord::Base
     end
   end
 
-  def create_fifth(params)
-    note = self.notes.find(params['note_id'])
+  def create_fifth(params, note)
     self.notes.create(frequency: note.frequency * 1.5)
   end
 
-  def create_seventh(params)
-    note = self.notes.find(params['note_id'])
+  def create_seventh(params, note)
     if params['seventh_type'] == 'Major (15/8)'
       self.notes.create(frequency: note.frequency * 1.875)
     elsif params['seventh_type'] == 'Minor (9/5)'
@@ -32,8 +29,7 @@ class Scale < ActiveRecord::Base
     end
   end
 
-  def create_octave(params)
-    note = self.notes.find(params['note_id'])
+  def create_octave(params, note)
     self.notes.create(frequency: note.frequency * 2)
   end
 
@@ -46,14 +42,17 @@ class Scale < ActiveRecord::Base
   end
 
   def create_note(params)
+    if params[:note_id]
+      note = self.notes.find(params['note_id'])
+    end
     if params['third_type']
-      self.create_third(params)
+      self.create_third(params, note)
     elsif params['fifth']
-      self.create_fifth(params)
+      self.create_fifth(params, note)
     elsif params['seventh_type']
-      self.create_seventh(params)
+      self.create_seventh(params, note)
     elsif params['octave']
-      self.create_octave(params)
+      self.create_octave(params, note)
     else
       self.parse_frequencies(params)
     end

@@ -36,8 +36,11 @@ $(document).ready(function() {
       voice.vco.frequency.value = notesArray[i];
       voice.vca = context.createGain();
       voice.vca.gain.value = 0;
+      voice.panNode = context.createStereoPanner();
+      voice.panNode.pan.value = (Math.random() * (0 - 2) + 2) - 1
       voice.vco.connect(voice.vca);
-      voice.vca.connect(context.destination);
+      voice.vca.connect(voice.panNode);
+      voice.panNode.connect(context.destination);
       voice.vco.start(0);
       voices.push(voice);
       $('.note' + i).click(function() {
@@ -51,7 +54,7 @@ $(document).ready(function() {
         else {
           $this.text('Stop Note');
           $this.toggleClass("btn-success").toggleClass("btn-danger");
-          voices[i].vca.gain.value = 1;
+          voices[i].vca.gain.value = .1;
         }
       });
     }
