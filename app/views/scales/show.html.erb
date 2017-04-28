@@ -1,5 +1,5 @@
-<h1 id="scale_name"><%= @scale.name %></h1>
-<% if current_user == @scale.user %>
+<h1 id="scale_name" class='centered'><%= @scale.name %></h1>
+<% if current_user %>
   <div class="outer">
     <div id="edit_scale" class="inner">
       <%= link_to "Edit Scale Name", edit_scale_path(@scale), class:"btn btn-warning btn-outline btn-xs", remote: true %>
@@ -15,12 +15,23 @@
   <% if @scale.notes.any? %>
     <%= render :partial => 'notes/notes_list', :object => @scale.notes %>
   <% else %>
-    <p class="bufferText">This scale has no notes yet!</p>
+    <p class="bufferText">This scale has no notes yet.</p>
   <% end %>
 </div>
-<% if current_user == @scale.user || !@scale.user %>
-  <%= link_to "Add some notes", new_scale_note_path(@scale), class: "btn btn-primary btn-outline", id: 'add_notes_link', remote: true %>
-<% end %>
+
 <div id="add_notes_form">
 </div>
-<hr>
+
+<% unless current_user %>
+  <div class='container centered well'>
+    <ul class='list-group'>
+      <li class='list-group-item'>
+        <h3>Log in to save your scale:</h3>
+        <%= link_to "sign up", new_user_registration_path(scale_id: @scale)  %> |
+        <%= link_to "login", new_user_session_path(scale_id: @scale)  %>
+      </li>
+    </ul>
+  </div>
+  <br>
+  <br>
+<% end %>

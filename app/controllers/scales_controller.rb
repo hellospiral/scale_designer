@@ -5,7 +5,14 @@ class ScalesController < ApplicationController
   end
 
   def show
-    @scale = Scale.find(params[:id])
+    if params[:id]
+      @scale = Scale.find(params[:id])
+    else
+      unless @scale = Scale.find_by(name: 'Sandbox Scale')
+        @scale = Scale.create(name: 'Sandbox Scale')
+        @scale.notes.create(frequency: 150)
+      end
+    end
   end
 
   def new
