@@ -1,6 +1,6 @@
 <h1 id="scale_name" class='centered'><%= @scale.name %></h1>
-<% if current_user %>
-  <div class="outer">
+<% if @scale.user &&  @scale.user == current_user %>
+  <div class="outer centered">
     <div id="edit_scale" class="inner">
       <%= link_to "Edit Scale Name", edit_scale_path(@scale), class:"btn btn-warning btn-outline btn-xs", remote: true %>
     </div>
