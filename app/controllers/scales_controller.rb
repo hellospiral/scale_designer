@@ -7,6 +7,8 @@ class ScalesController < ApplicationController
   def show
     if params[:id]
       @scale = Scale.find(params[:id])
+    elsif current_user
+      @scale = current_user.scales.last
     else
       unless @scale = Scale.find_by(name: 'Sandbox Scale')
         @scale = Scale.create(name: 'Sandbox Scale')
@@ -21,29 +23,20 @@ class ScalesController < ApplicationController
 
   def create
     if current_user
-      @scale = current_user.scales.new(scale_params)
-      if @scale.save
-        flash[:notice] = "Scale successfully added!"
-        respond_to do |format|
-          format.html {redirect_to scale_path(@scale)}
-          format.js
-        end
-      else
-        flash[:alert] = "Scale did not save! Please try again"
-        render :new
+      @scale = current_user.scales.new(name: 'New Scale ' + Scale.count.to_s)
+    else
+      @scale = Scale.new(name: 'New Scale ' + Scale.count.to_s)
+    end
+    if @scale.save
+      @scale.notes.create(frequency: 150)
+      flash[:notice] = "Scale successfully added!"
+      respond_to do |format|
+        format.html {redirect_to scale_path(@scale)}
+        format.js
       end
     else
-      @scale = Scale.new(scale_params)
-      if @scale.save
-        flash[:notice] = "Scale successfully added!"
-        respond_to do |format|
-          format.html {redirect_to scale_path(@scale)}
-          format.js
-        end
-      else
-        flash[:alert] = "Scale did not save! Please try again"
-        render :new
-      end
+      flash[:alert] = "Scale did not save! Please try again"
+      render :new
     end
   end
 

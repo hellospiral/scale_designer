@@ -22,7 +22,7 @@
 <div id="add_notes_form">
 </div>
 
-<% unless current_user %>
+<% unless current_user || @scale.user %>
   <div class='container centered well'>
     <ul class='list-group'>
       <li class='list-group-item'>
@@ -33,5 +33,10 @@
     </ul>
   </div>
   <br>
+  <br>
+<% else %>
+  <div class='container centered'>
+    <%= link_to "New Scale", scales_path, :method => :post, class: 'btn btn-primary btn-outline btn-lg centered' %>
+  </div>
   <br>
 <% end %>

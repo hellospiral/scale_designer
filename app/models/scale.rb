@@ -1,7 +1,7 @@
 class Scale < ActiveRecord::Base
   has_many :notes
   belongs_to :user, optional: true
-  validates :name, :presence => true
+  # validates :name, :presence => true
 
   def create_third(params, note)
     if params['third_type'] == 'Septimal minor (7/6)'

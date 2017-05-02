@@ -17,8 +17,7 @@
 <% end %>
 
 <hr>
-<div id= "newScaleButton" class="bigButton">
-  <%= link_to "Add a Scale", new_scale_path, class: "btn btn-primary btn-outline btn-lg", remote: true %>
+<div id= "newScaleButton" class="bigButton centered">
+  <%= link_to "New Scale", scales_path, :method => :post, class: 'btn btn-primary btn-outline btn-lg centered' %>
 </div>
-<div id="newScaleForm">
-</div>
+<br>
