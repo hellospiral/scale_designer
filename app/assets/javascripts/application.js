@@ -57,6 +57,11 @@ $(document).ready(function() {
           voices[i].vca.gain.value = .1;
         }
       });
+      $('.stopper').click(function() {
+        for (var i = 0; i < voices.length; i++) {
+          voices[i].vca.gain.value = 0;
+        }
+      });
     }
   }
 });

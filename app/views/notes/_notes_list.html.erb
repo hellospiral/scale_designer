@@ -5,8 +5,8 @@
       <li class="list-group-item padded">
         <span id="note_freq-<%=note.id%>"><%= note.frequency %></span>
         <% if @scale.user == current_user || !@scale.user %>
-          | <%= link_to "Edit", edit_scale_note_path(@scale, note), remote: true %> |
-          <%= link_to "Delete", scale_note_path(@scale, note),
+          | <%= link_to "Edit", edit_scale_note_path(@scale, note), class: 'stopper', remote: true %> |
+          <%= link_to "Delete", scale_note_path(@scale, note), class: 'stopper',
                                    :data => {:confirm => "Are you sure?",
                                                   :method => "delete"}, remote: true %>
         <% end %>
@@ -14,7 +14,7 @@
         <% end %>
         <h5>Add notes above this note:</h5>
         <div class="form-row">
-          <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+          <%= form_tag scale_notes_path(@scale), class: 'stopper form-inline', remote: true do %>
             <div class='form-group'>
               <%= label_tag :third_type, "Third:" %>
               <%= hidden_field_tag 'note_id', note.id %>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-row">
-          <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+          <%= form_tag scale_notes_path(@scale), class: 'stopper form-inline', remote: true do %>
             <div class='form-group'>
               <%= label_tag :fifth, "Fifth (3/2):" %>
               <%= hidden_field_tag 'fifth' %>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-row">
-          <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+          <%= form_tag scale_notes_path(@scale), class: 'stopper form-inline', remote: true do %>
             <div class="form-group">
               <%= label_tag :seventh_type, "Seventh:" %>
               <%= hidden_field_tag 'note_id', note.id %>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="form-row">
-          <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+          <%= form_tag scale_notes_path(@scale), class: 'stopper form-inline', remote: true do %>
             <div class='form-group'>
               <%= label_tag :octave, "Octave (2/1):" %>
               <%= hidden_field_tag 'octave' %>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="form-row">
-          <%= form_tag scale_note_path(@scale, note), class: 'form-inline', method: 'patch', remote: true do %>
+          <%= form_tag scale_note_path(@scale, note), class: 'stopper form-inline', method: 'patch', remote: true do %>
             <div class='form-group'>
               <%= hidden_field_tag 'transposition', 'up_octave' %>
             </div>
@@ -67,7 +67,7 @@
         </div>
 
         <div class="form-row">
-          <%= form_tag scale_note_path(@scale, note), class: 'form-inline', method: 'patch', remote: true do %>
+          <%= form_tag scale_note_path(@scale, note), class: 'stopper form-inline', method: 'patch', remote: true do %>
             <div class='form-group'>
               <%= hidden_field_tag 'transposition', 'down_octave' %>
             </div>
