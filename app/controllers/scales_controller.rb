@@ -1,4 +1,5 @@
 class ScalesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @scales = Scale.all
@@ -7,7 +8,7 @@ class ScalesController < ApplicationController
   def show
     if params[:id]
       @scale = Scale.find(params[:id])
-    elsif current_user
+    elsif current_user && current_user.scales.any?
       @scale = current_user.scales.last
     else
       unless @scale = Scale.find_by(name: 'Sandbox Scale')
