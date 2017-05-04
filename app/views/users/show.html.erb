@@ -1,0 +1,11 @@
+<% if current_user && current_user == @user %>
+  <%= link_to 'Edit Account', edit_user_registration_path, class: 'btn btn-outline btn-primary btn-sm' %>
+<% end %>
+
+<h1><%=@user.email%>'s scales:</h1>
+
+<ul class='list-group'%>
+  <% @user.scales.each do |scale| %>
+    <li class='list-group-item'><%= link_to scale.name, scale_path(scale) %></li>
+  <% end %>
+</ul>
