@@ -7,6 +7,7 @@ class ScalesController < ApplicationController
 
   def show
     @scale = Scale.find(params[:id])
+    @notes = @scale.notes.hash_tree
   end
 
   def new

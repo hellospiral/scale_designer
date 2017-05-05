@@ -30,10 +30,10 @@ $(document).ready(function() {
         notesArray.push(note.frequency);
       });
     }
-    for (let i = 0; i < notesArray.length; i++) {
+    for (let i = 0; i < notes.length; i++) {
       var voice = {};
       voice.vco = context.createOscillator();
-      voice.vco.frequency.value = notesArray[i];
+      voice.vco.frequency.value = notes[i].frequency;
       voice.vca = context.createGain();
       voice.vca.gain.value = 0;
       voice.panNode = context.createStereoPanner();
@@ -43,10 +43,10 @@ $(document).ready(function() {
       voice.panNode.connect(context.destination);
       voice.vco.start(0);
       voices.push(voice);
-      $('.note' + i).click(function() {
+      $('.note' + notes[i].id).click(function() {
         var $this = $(this);
-        $this.toggleClass('note' + i);
-        if($this.hasClass('note' + i)) {
+        $this.toggleClass('note' + notes[i].id);
+        if($this.hasClass('note' + notes[i].id)) {
           $this.text('Play Note');
           $this.toggleClass("btn-danger").toggleClass("btn-success");
           voices[i].vca.gain.value = 0;
