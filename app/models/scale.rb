@@ -8,32 +8,32 @@ class Scale < ActiveRecord::Base
 
   def create_third(params, note)
     if params['third_type'] == 'Septimal minor (7/6)'
-      self.notes.create(frequency: note.frequency * 1.166666667)
+      return self.notes.create(frequency: note.frequency * 1.166666667)
     elsif params['third_type'] == 'Major (5/4)'
-      self.notes.create(frequency: note.frequency * 1.25)
+      return self.notes.create(frequency: note.frequency * 1.25)
     elsif params['third_type'] == 'Minor (6/5)'
-      self.notes.create(frequency: note.frequency * 1.2)
+      return self.notes.create(frequency: note.frequency * 1.2)
     end
   end
 
   def create_fifth(params, note)
-    self.notes.create(frequency: note.frequency * 1.5)
+    return self.notes.create(frequency: note.frequency * 1.5)
   end
 
   def create_seventh(params, note)
     if params['seventh_type'] == 'Major (15/8)'
-      self.notes.create(frequency: note.frequency * 1.875)
+      return self.notes.create(frequency: note.frequency * 1.875)
     elsif params['seventh_type'] == 'Minor (9/5)'
-      self.notes.create(frequency: note.frequency * 1.8)
+      return self.notes.create(frequency: note.frequency * 1.8)
     elsif params['seventh_type'] == 'Pythagorean minor (16/9)'
-      self.notes.create(frequency: note.frequency * 1.777777778)
+      return self.notes.create(frequency: note.frequency * 1.777777778)
     elsif params['seventh_type'] == 'Harmonic minor (7/4)'
-      self.notes.create(frequency: note.frequency * 1.75)
+      return self.notes.create(frequency: note.frequency * 1.75)
     end
   end
 
   def create_octave(params, note)
-    self.notes.create(frequency: note.frequency * 2)
+    return self.notes.create(frequency: note.frequency * 2)
   end
 
   def parse_frequencies(params)
@@ -49,13 +49,17 @@ class Scale < ActiveRecord::Base
       note = self.notes.find(params['note_id'])
     end
     if params['third_type']
-      self.create_third(params, note)
+      child = self.create_third(params, note)
+      note.add_child child
     elsif params['fifth']
-      self.create_fifth(params, note)
+      child = self.create_fifth(params, note)
+      note.add_child child
     elsif params['seventh_type']
-      self.create_seventh(params, note)
+      child = self.create_seventh(params, note)
+      note.add_child child
     elsif params['octave']
-      self.create_octave(params, note)
+      child = self.create_octave(params, note)
+      note.add_child child
     else
       self.parse_frequencies(params)
     end
