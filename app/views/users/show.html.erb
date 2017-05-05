@@ -1,11 +1,28 @@
-<% if current_user && current_user == @user %>
-  <%= link_to 'Edit Account', edit_user_registration_path, class: 'btn btn-outline btn-primary btn-sm' %>
-<% end %>
+<div class='row'>
+  <div class='col-sm-3'>
+    <h4>Username:
+      <% if @user.username %>
+        <%= @user.username %>
+      <% end %>
+    </h4>
+    <br>
+    <h4>Name:
+      <% if @user.first_name && @user.last_name %>
+        <%= @user.first_name + ' ' + @user.last_name %>
+      <% end %>
+    </h4>
+    <hr>
+    <% if current_user && current_user == @user %>
+      <%= link_to 'Edit Account', edit_user_registration_path, class: 'btn btn-outline btn-primary btn-sm' %>
+    <% end %>
+  </div>
+  <div class='col-sm-9'>
+    <h4>Your Scales: <% @user.scales.count %></h4>
 
-<h1><%=@user.email%>'s scales:</h1>
-
-<ul class='list-group'%>
-  <% @user.scales.each do |scale| %>
-    <li class='list-group-item'><%= link_to scale.name, scale_path(scale) %></li>
-  <% end %>
-</ul>
+    <ul class='list-group'%>
+      <% @user.scales.each do |scale| %>
+        <li class='list-group-item'><%= link_to scale.name, scale_path(scale) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

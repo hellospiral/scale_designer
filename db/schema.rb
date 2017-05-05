@@ -22,9 +22,12 @@ ActiveRecord::Schema.define(version: 20170504181603) do
 
   create_table "scales", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "notes_count"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.index ["name"], name: "index_scales_on_name", using: :btree
+    t.index ["notes_count"], name: "index_scales_on_notes_count", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

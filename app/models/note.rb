@@ -4,6 +4,9 @@ class Note < ActiveRecord::Base
 
   validates :frequency, :presence => true
 
+  after_create :increment_note_count
+  after_destroy :decrement_note_count
+
   def transpose(params)
     if params[:transposition] == 'up_octave'
       self.transpose_up_octave
@@ -20,5 +23,17 @@ class Note < ActiveRecord::Base
   def transpose_down_octave
     self.frequency = self.frequency / 2
     self.save!
+  end
+
+  private
+
+  def increment_note_count
+    self.scale.notes_count += 1
+    self.scale.save!
+  end
+
+  def decrement_note_count
+    self.scale.notes_count -= 1
+    self.scale.save!
   end
 end

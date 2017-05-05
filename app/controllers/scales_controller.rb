@@ -1,21 +1,12 @@
 class ScalesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :create]
 
   def index
-    @scales = Scale.all
+    @scales = Scale.active
   end
 
   def show
-    if params[:id]
-      @scale = Scale.find(params[:id])
-    elsif current_user && current_user.scales.any?
-      @scale = current_user.scales.last
-    else
-      unless @scale = Scale.find_by(name: 'Sandbox Scale')
-        @scale = Scale.create(name: 'Sandbox Scale')
-        @scale.notes.create(frequency: 150)
-      end
-    end
+    @scale = Scale.find(params[:id])
   end
 
   def new
@@ -25,12 +16,11 @@ class ScalesController < ApplicationController
   def create
     if current_user
       @scale = current_user.scales.new(name: 'New Scale ' + Scale.count.to_s)
+      flash[:notice] = "Scale successfully added!"
     else
-      @scale = Scale.new(name: 'New Scale ' + Scale.count.to_s)
+      @scale = find_or_create_starter_scale
     end
     if @scale.save
-      @scale.notes.create(frequency: 150)
-      flash[:notice] = "Scale successfully added!"
       respond_to do |format|
         format.html {redirect_to scale_path(@scale)}
         format.js
@@ -70,4 +60,13 @@ class ScalesController < ApplicationController
   def scale_params
     params.require(:scale).permit(:name)
   end
+
+  def find_or_create_starter_scale
+    @scale = Scale.find_by(user_id: nil, notes_count: 1)
+    if @scale == nil
+      @scale = Scale.create(name: 'Sandbox Scale ' + Scale.count.to_s)
+    end
+    return @scale
+  end
+
 end

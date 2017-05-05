@@ -15,6 +15,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     if @user.persisted?
+      @scale = @user.scales.last
       sign_in @user
       set_flash_message(:notice, :success, :kind => "Google") if is_navigational_format?
       redirect_to scale_path(@scale)

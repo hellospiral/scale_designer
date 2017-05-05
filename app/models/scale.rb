@@ -1,7 +1,10 @@
 class Scale < ActiveRecord::Base
   has_many :notes
   belongs_to :user, optional: true
-  # validates :name, :presence => true
+  scope :active, -> { where("user_id IS NOT NULL") }
+  after_create :set_note_count
+  after_create :create_starter_note
+
 
   def create_third(params, note)
     if params['third_type'] == 'Septimal minor (7/6)'
@@ -56,5 +59,16 @@ class Scale < ActiveRecord::Base
     else
       self.parse_frequencies(params)
     end
+  end
+
+  private
+
+  def create_starter_note
+    self.notes.create(frequency: 150)
+  end
+
+  def set_note_count
+    self.notes_count = 0
+    self.save!
   end
 end
