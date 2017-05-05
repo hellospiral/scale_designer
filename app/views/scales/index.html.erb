@@ -6,7 +6,9 @@
   <div class="well">
     <ul id="scales_list" class="list-group">
       <% @scales.each do |scale| %>
-        <li class="list-group-item"><%= link_to scale.name, scale_path(scale) %></li>
+        <li class="list-group-item"><%= link_to scale.name, scale_path(scale) %>
+          - by <%= link_to scale.user.name, user_path(scale.user) %>
+        </li>
       <% end %>
     </ul>
   </div>

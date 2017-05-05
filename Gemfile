@@ -14,6 +14,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
+gem 'closure_tree'
 
 group :development, :test do
   gem 'byebug', platform: :mri

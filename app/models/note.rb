@@ -1,6 +1,7 @@
 class Note < ActiveRecord::Base
-  belongs_to :scale
   attr_accessor :transposition
+  belongs_to :scale
+  has_closure_tree order: 'frequency'
 
   validates :frequency, :presence => true
 

@@ -20,4 +20,14 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def name
+    if self.username
+      self.username
+    elsif self.first_name && self.last_name
+      self.first_name + ' ' + self.last_name
+    else
+      self.email.split('@')[0]
+    end
+  end
 end

@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504181603) do
+ActiveRecord::Schema.define(version: 20170505174141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "note_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id",   null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations",   null: false
+    t.index ["ancestor_id", "descendant_id", "generations"], name: "note_anc_desc_idx", unique: true, using: :btree
+    t.index ["descendant_id"], name: "note_desc_idx", using: :btree
+  end
+
   create_table "notes", force: :cascade do |t|
     t.float   "frequency"
     t.integer "scale_id"
+    t.integer "parent_id"
   end
 
   create_table "scales", force: :cascade do |t|

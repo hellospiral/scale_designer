@@ -57,6 +57,9 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     cliver (0.3.2)
+    closure_tree (6.5.0)
+      activerecord (>= 4.1.0)
+      with_advisory_lock (>= 3.0.0)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -251,6 +254,9 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    with_advisory_lock (3.1.0)
+      activerecord (>= 3.2)
+      thread_safe
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -261,6 +267,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   capybara
+  closure_tree
   coffee-rails (~> 4.2)
   database_cleaner
   devise
