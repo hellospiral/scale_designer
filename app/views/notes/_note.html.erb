@@ -1,5 +1,38 @@
-<p><span id="note_freq-<%=note.id%>"><%= note.frequency %></span></p>
 
-<div class="">
-  <button class="note<%=note.id%> btn btn-success">Play note</button>
-</div>
+  <li class = 'list-group-item padded'>
+    <span id="note_freq-<%=note.id%>"><%= note.frequency %></span>
+
+        <div class='collapse navbar-collapse'>
+          <ul class='nav navbar-nav'>
+            <li class='dropdown'>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Add note<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <div class="form-row">
+                    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+                      <div class='form-group'>
+                        <%= label_tag :fifth, "Fifth (3/2):" %>
+                        <%= hidden_field_tag 'fifth' %>
+                        <%= hidden_field_tag 'note_id', note.id %>
+                      </div>
+                      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+                    <% end %>
+                  </div>
+                </li>
+                <li><a href='#'>Link2</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href='#'>Link3</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+
+
+
+
+
+    <button class="note<%=note.id%> btn btn-success">Play note</button>
+  </li>
