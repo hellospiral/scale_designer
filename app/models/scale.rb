@@ -17,7 +17,7 @@ class Scale < ActiveRecord::Base
   end
 
   def create_fifth(params, note)
-    return self.notes.create(frequency: note.frequency * 1.5, name: '3/2 fifth')
+    return self.notes.create(frequency: note.frequency * 1.5, name: '3/2 perfect fifth')
   end
 
   def create_seventh(params, note)
@@ -34,6 +34,24 @@ class Scale < ActiveRecord::Base
 
   def create_octave(params, note)
     return self.notes.create(frequency: note.frequency * 2, name: '2/1 octave')
+  end
+
+  def create_fourth(params, note)
+    if params['fourth_type'] == 'Perfect (4/3)'
+      return self.notes.create(frequency: note.frequency * 1.333333333, name: '4/3 perfect fourth')
+    elsif params['fourth_type'] == 'Harmonic Tritone (11/8)'
+      return self.notes.create(frequency: note.frequency * 1.375, name: '11/8 harmonic tritone')
+    elsif params['fourth_type'] == 'Five-Limit Tritone (45/32)'
+      return self.notes.create(frequency: note.frequency * 1.40625, name: '45/32 five-limit tritone')
+    end
+  end
+
+  def create_fifth_below(params, note)
+    return self.notes.create(frequency: note.frequency * 0.666667, name: '4/3 perfect fifth down')
+  end
+
+  def create_third_below(params, note)
+    return self.notes.create(frequency: note.frequency * 0.8, name: '8/5 major third down')
   end
 
   def parse_frequencies(params)
@@ -57,8 +75,17 @@ class Scale < ActiveRecord::Base
     elsif params['seventh_type']
       child = self.create_seventh(params, note)
       note.add_child child
+    elsif params['fourth_type']
+      child = self.create_fourth(params, note)
+      note.add_child child
     elsif params['octave']
       child = self.create_octave(params, note)
+      note.add_child child
+    elsif params['fifth_below']
+      child = self.create_fifth_below(params, note)
+      note.add_child child
+    elsif params['major_third_below']
+      child = self.create_third_below(params, note)
       note.add_child child
     else
       self.parse_frequencies(params)

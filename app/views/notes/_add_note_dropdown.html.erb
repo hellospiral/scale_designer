@@ -1,5 +1,5 @@
-<a class="btn btn-primary btn-outline" role="button" data-toggle="collapse" href="#<%= note.id%>addNoteCollapse" aria-expanded="false" aria-controls="<%= note.id %>addNoteCollapse">
-  Add notes
+<a class="btn btn-primary btn-outline btn-sm" role="button" data-toggle="collapse" href="#<%= note.id%>addNoteCollapse" aria-expanded="false" aria-controls="<%= note.id %>addNoteCollapse">
+  Add Above
 </a>
 <div class="collapse" id="<%= note.id %>addNoteCollapse">
   <div class="well">
@@ -35,6 +35,15 @@
         <%= label_tag :seventh_type, "Seventh:" %>
         <%= hidden_field_tag 'note_id', note.id %>
         <%= select_tag :seventh_type, options_for_select([ "Major (15/8)", "Minor (9/5)", "Pythagorean minor (16/9)", "Harmonic minor (7/4)"]), class: 'form-control' %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class="form-group">
+        <%= label_tag :fourth_type, "Fourth:" %>
+        <%= hidden_field_tag 'note_id', note.id %>
+        <%= select_tag :fourth_type, options_for_select([ "Perfect (4/3)", "Harmonic Tritone (11/8)", 'Five-Limit Tritone (45/32)']), class: 'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>

@@ -26,6 +26,23 @@ class Note < ActiveRecord::Base
     self.save!
   end
 
+  def relative_name
+    # MC_REVISIT: don't hard code this
+    if self.parent
+      if self.name == '8/5 major third down' && self.frequency > self.parent.frequency
+        '8/5 minor sixth up'
+      elsif self.name == '4/3 perfect fifth down' && self.frequency > self.parent.frequency
+        '4/3 perfect fourth up'
+      elsif self.name == '3/2 perfect fifth' && self.frequency < self.parent.frequency
+        '3/2 perfect fourth down'
+      else
+        self.name
+      end
+    else
+      self.name
+    end
+  end
+
   private
 
   def increment_note_count
