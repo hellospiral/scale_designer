@@ -8,32 +8,32 @@ class Scale < ActiveRecord::Base
 
   def create_third(params, note)
     if params['third_type'] == 'Septimal minor (7/6)'
-      return self.notes.create(frequency: note.frequency * 1.166666667)
+      return self.notes.create(frequency: note.frequency * 1.166666667, name: '7/6 minor third')
     elsif params['third_type'] == 'Major (5/4)'
-      return self.notes.create(frequency: note.frequency * 1.25)
+      return self.notes.create(frequency: note.frequency * 1.25, name: '5/4 major third')
     elsif params['third_type'] == 'Minor (6/5)'
-      return self.notes.create(frequency: note.frequency * 1.2)
+      return self.notes.create(frequency: note.frequency * 1.2, name: '6/5 minor third')
     end
   end
 
   def create_fifth(params, note)
-    return self.notes.create(frequency: note.frequency * 1.5)
+    return self.notes.create(frequency: note.frequency * 1.5, name: '3/2 fifth')
   end
 
   def create_seventh(params, note)
     if params['seventh_type'] == 'Major (15/8)'
-      return self.notes.create(frequency: note.frequency * 1.875)
+      return self.notes.create(frequency: note.frequency * 1.875, name: '15/8 major seventh')
     elsif params['seventh_type'] == 'Minor (9/5)'
-      return self.notes.create(frequency: note.frequency * 1.8)
+      return self.notes.create(frequency: note.frequency * 1.8, name: '9/5 minor seventh')
     elsif params['seventh_type'] == 'Pythagorean minor (16/9)'
-      return self.notes.create(frequency: note.frequency * 1.777777778)
+      return self.notes.create(frequency: note.frequency * 1.777777778, name: '16/9 minor seventh')
     elsif params['seventh_type'] == 'Harmonic minor (7/4)'
-      return self.notes.create(frequency: note.frequency * 1.75)
+      return self.notes.create(frequency: note.frequency * 1.75, name: '7/4 minor seventh')
     end
   end
 
   def create_octave(params, note)
-    return self.notes.create(frequency: note.frequency * 2)
+    return self.notes.create(frequency: note.frequency * 2, name: '2/1 octave')
   end
 
   def parse_frequencies(params)
@@ -68,7 +68,7 @@ class Scale < ActiveRecord::Base
   private
 
   def create_starter_note
-    self.notes.create(frequency: 150)
+    self.notes.create(frequency: 150, name: '1/1 root')
   end
 
   def set_note_count

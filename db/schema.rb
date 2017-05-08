@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170505174141) do
     t.float   "frequency"
     t.integer "scale_id"
     t.integer "parent_id"
+    t.string  "name"
   end
 
   create_table "scales", force: :cascade do |t|

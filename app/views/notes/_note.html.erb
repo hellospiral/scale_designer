@@ -1,5 +1,5 @@
 <li class = 'list-group-item'>
-  <span id="note_freq-<%=note.id%>"><%= note.frequency %></span>
+  <span id="note_freq-<%=note.id%>"><%= note.name %> (<%= note.frequency %> hz)</span>
 
   <%= render partial: "notes/add_note_dropdown", locals: { scale: @scale, note: note } %>
 
