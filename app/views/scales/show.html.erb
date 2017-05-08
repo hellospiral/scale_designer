@@ -13,8 +13,7 @@
 <% end %>
 <div id="notes_list">
   <% if @scale.notes.any? %>
-    <%= content_tag :div, class: "freq_information", data: {notes: @scale.notes } do %>
-    <% end %>
+    
     <%= render :partial => 'notes/notes_tree', :object => @notes %>
   <% else %>
     <p class="bufferText">This scale has no notes yet.</p>

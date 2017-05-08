@@ -1,5 +1,7 @@
 <div class="well">
   <ul class='list-group'>
-    <%= notes_tree_for @notes %>
+    <%= content_tag :div, class: "freq_information", data: {notes: @scale.notes } do %>
+    <% end %>
+    <%= notes_tree_for @scale.notes.hash_tree %>
   </ul>
 </div>
