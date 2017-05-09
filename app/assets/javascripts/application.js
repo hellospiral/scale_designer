@@ -63,6 +63,9 @@ $(document).ready(function() {
         }
       });
     }
+    $('.stopper').click(function() {
+      context.close();
+    });
   }
 });
 //= require turbolinks

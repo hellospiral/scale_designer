@@ -1,5 +1,5 @@
-$('#add_notes_form').html("");
-$('#add_notes_link').show();
+// $('#add_notes_form').html("");
+// $('#add_notes_link').show();
 $('#notes_list').html("<%= j render :partial => 'notes/notes_tree', :notes => @scale.notes.hash_tree %>");
 
 $(document).ready(function() {
@@ -50,5 +50,8 @@ $(document).ready(function() {
         }
       });
     }
+    $('.stopper').click(function() {
+      context.close();
+    });
   }
 });
