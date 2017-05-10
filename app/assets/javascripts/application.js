@@ -54,7 +54,7 @@ $(document).ready(function() {
         else {
           $this.text('Stop Note');
           $this.toggleClass("btn-success").toggleClass("btn-danger");
-          voices[i].vca.gain.value = .1;
+          voices[i].vca.gain.value = .25;
         }
       });
       $('.stopper').click(function() {

@@ -5,6 +5,15 @@ class Scale < ActiveRecord::Base
   after_create :set_note_count
   after_create :create_starter_note
 
+  def create_second(params, note)
+    if params['second_type'] == '25/24 (Minor 5-limit half-step)'
+      return self.notes.create(frequency: note.frequency * 1.04166667, name: '25/24 (Minor 5-limit half-step)')
+    elsif params['second_type'] == '16/15 (Major five-limit half-step)'
+      return self.notes.create(frequency: note.frequency * 1.06666667, name: '16/15 (Major five-limit half-step)')
+    elsif params['second_type'] == '9/8 (Major whole tone)'
+      return self.notes.create(frequency: note.frequency * 1.125, name: '9/8 (Major whole tone)')
+    end
+  end
 
   def create_third(params, note)
     if params['third_type'] == 'Septimal minor (7/6)'
@@ -43,6 +52,16 @@ class Scale < ActiveRecord::Base
       return self.notes.create(frequency: note.frequency * 1.375, name: '11/8 harmonic tritone')
     elsif params['fourth_type'] == 'Five-Limit Tritone (45/32)'
       return self.notes.create(frequency: note.frequency * 1.40625, name: '45/32 five-limit tritone')
+    end
+  end
+
+  def create_sixth(params, note)
+    if params['sixth_type'] == '25/16 (augmented fifth)'
+      return self.notes.create(frequency: note.frequency * 1.5625, name: '25/16 (augmented fifth)')
+    elsif params['sixth_type'] == '8/5 (Five-limit minor)'
+      return self.notes.create(frequency: note.frequency * 1.6, name: '8/5 (Five-limit minor)')
+    elsif params['sixth_type'] == '5/3 (5-limit major)'
+      return self.notes.create(frequency: note.frequency * 1.666666667, name: '5/3 (5-limit major)')
     end
   end
 
@@ -86,6 +105,12 @@ class Scale < ActiveRecord::Base
       note.add_child child
     elsif params['major_third_below']
       child = self.create_third_below(params, note)
+      note.add_child child
+    elsif params['second_type']
+      child = self.create_second(params, note)
+      note.add_child child
+    elsif params['sixth_type']
+      child = self.create_sixth(params, note)
       note.add_child child
     else
       self.parse_frequencies(params)

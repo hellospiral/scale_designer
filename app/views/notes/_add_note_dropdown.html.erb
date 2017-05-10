@@ -47,5 +47,23 @@
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class="form-group">
+        <%= label_tag :second_type, "Second:" %>
+        <%= hidden_field_tag 'note_id', note.id %>
+        <%= select_tag :second_type, options_for_select([ "25/24 (Minor 5-limit half-step)", "16/15 (Major five-limit half-step)", '9/8 (Major whole tone)' ]), class: 'form-control' %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class="form-group">
+        <%= label_tag :sixth_type, "Sixth:" %>
+        <%= hidden_field_tag 'note_id', note.id %>
+        <%= select_tag :sixth_type, options_for_select([ "25/16 (augmented fifth)", "8/5 (Five-limit minor)", "5/3 (5-limit major)"]), class: 'form-control' %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
   </div>
 </div>
