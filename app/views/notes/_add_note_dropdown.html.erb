@@ -8,7 +8,7 @@
       <div class="form-group">
         <%= label_tag :second_type, "Second:" %>
         <%= hidden_field_tag 'note_id', note.id %>
-        <%= select_tag :second_type, options_for_select([ "Minor 5-limit half-step (25/24)", "Major five-limit half-step (16/15)", 'Major whole tone (9/8)' ]), class: 'form-control' %>
+        <%= select_tag :second_type, options_for_select([ "Minor 5-limit half-step (25/24)", "Major five-limit half-step (16/15)", 'Minor whole tone (10/9)', 'Major whole tone (9/8)' ], 'Major whole tone (9/8)'), class: 'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>
@@ -17,7 +17,7 @@
       <div class='form-group'>
         <%= label_tag :third_type, "Third:" %>
         <%= hidden_field_tag 'note_id', note.id %>
-        <%= select_tag :third_type, options_for_select([ "Major (5/4)", "Minor (6/5)", "Septimal minor (7/6)"]), class:'form-control' %>
+        <%= select_tag :third_type, options_for_select([ "Septimal minor (7/6)", "5-limit minor (6/5)", 'Undecimal "median" third (11/9)', "5-limit major (5/4)", "Septimal major (9/7)"], "5-limit major (5/4)"), class:'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper" %>
     <% end %>
@@ -26,16 +26,16 @@
       <div class="form-group">
         <%= label_tag :fourth_type, "Fourth:" %>
         <%= hidden_field_tag 'note_id', note.id %>
-        <%= select_tag :fourth_type, options_for_select([ "Perfect (4/3)", "Harmonic Tritone (11/8)", 'Five-Limit Tritone (45/32)']), class: 'form-control' %>
+        <%= select_tag :fourth_type, options_for_select([ "Septimal fourth (21/16)", "Perfect (4/3)", "Harmonic Tritone (11/8)", 'Five-Limit Tritone (45/32)'], "Perfect (4/3)"), class: 'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>
 
     <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
-      <div class='form-group'>
-        <%= label_tag :fifth, "Fifth (3/2):" %>
-        <%= hidden_field_tag 'fifth' %>
+      <div class="form-group">
+        <%= label_tag :fourth_type, "Fifth:" %>
         <%= hidden_field_tag 'note_id', note.id %>
+        <%= select_tag :fifth_type, options_for_select([ "Diminished (36/25)", "Perfect (3/2)", "Augmented (25/16)"], "Perfect (3/2)"), class: 'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>
@@ -44,7 +44,7 @@
       <div class="form-group">
         <%= label_tag :sixth_type, "Sixth:" %>
         <%= hidden_field_tag 'note_id', note.id %>
-        <%= select_tag :sixth_type, options_for_select([ "Augmented fifth (25/16)", "Five-limit minor (8/5)", "5-limit major (5/3)"]), class: 'form-control' %>
+        <%= select_tag :sixth_type, options_for_select(["Undecimal minor (11/7)", "Five-limit minor (8/5)", "Overtone sixth (13/8)", "5-limit major (5/3)", "Septimal major (12/7)"], "5-limit major (5/3)"), class: 'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>
@@ -53,7 +53,7 @@
       <div class="form-group">
         <%= label_tag :seventh_type, "Seventh:" %>
         <%= hidden_field_tag 'note_id', note.id %>
-        <%= select_tag :seventh_type, options_for_select([ "Major (15/8)", "Minor (9/5)", "Pythagorean minor (16/9)", "Harmonic minor (7/4)"]), class: 'form-control' %>
+        <%= select_tag :seventh_type, options_for_select([ "Septimal minor (7/4)", "Pythagorean small minor (16/9)", "5-limit large minor (9/5)", "5-limit major (15/8)"  ]), class: 'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>
