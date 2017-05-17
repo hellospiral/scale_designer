@@ -7,7 +7,6 @@
 
   <% if @scale.user == current_user || !@scale.user %>
     <%= render partial: "notes/add_note_dropdown", locals: { scale: @scale, note: note } %>
-    <%= render partial: "notes/add_note_below_dropdown", locals: { scale: @scale, note: note } %>
     <%= render partial: 'notes/transpose', locals: { scale: @scale, note: note } %>
   <% end %>
 

@@ -1,22 +1,14 @@
 <a class="btn btn-primary btn-outline btn-sm" role="button" data-toggle="collapse" href="#<%= note.id%>addNoteCollapse" aria-expanded="false" aria-controls="<%= note.id %>addNoteCollapse">
-  Add Above
+  Add Note
 </a>
 <div class="collapse" id="<%= note.id %>addNoteCollapse">
   <div class="well">
-    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
-      <div class='form-group'>
-        <%= label_tag :fifth, "Fifth (3/2):" %>
-        <%= hidden_field_tag 'fifth' %>
-        <%= hidden_field_tag 'note_id', note.id %>
-      </div>
-      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
-    <% end %>
 
     <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
-      <div class='form-group'>
-        <%= label_tag :octave, "Octave (2/1):" %>
-        <%= hidden_field_tag 'octave' %>
+      <div class="form-group">
+        <%= label_tag :second_type, "Second:" %>
         <%= hidden_field_tag 'note_id', note.id %>
+        <%= select_tag :second_type, options_for_select([ "Minor 5-limit half-step (25/24)", "Major five-limit half-step (16/15)", 'Major whole tone (9/8)' ]), class: 'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>
@@ -32,15 +24,6 @@
 
     <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
       <div class="form-group">
-        <%= label_tag :seventh_type, "Seventh:" %>
-        <%= hidden_field_tag 'note_id', note.id %>
-        <%= select_tag :seventh_type, options_for_select([ "Major (15/8)", "Minor (9/5)", "Pythagorean minor (16/9)", "Harmonic minor (7/4)"]), class: 'form-control' %>
-      </div>
-      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
-    <% end %>
-
-    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
-      <div class="form-group">
         <%= label_tag :fourth_type, "Fourth:" %>
         <%= hidden_field_tag 'note_id', note.id %>
         <%= select_tag :fourth_type, options_for_select([ "Perfect (4/3)", "Harmonic Tritone (11/8)", 'Five-Limit Tritone (45/32)']), class: 'form-control' %>
@@ -49,10 +32,10 @@
     <% end %>
 
     <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
-      <div class="form-group">
-        <%= label_tag :second_type, "Second:" %>
+      <div class='form-group'>
+        <%= label_tag :fifth, "Fifth (3/2):" %>
+        <%= hidden_field_tag 'fifth' %>
         <%= hidden_field_tag 'note_id', note.id %>
-        <%= select_tag :second_type, options_for_select([ "25/24 (Minor 5-limit half-step)", "16/15 (Major five-limit half-step)", '9/8 (Major whole tone)' ]), class: 'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>
@@ -61,7 +44,25 @@
       <div class="form-group">
         <%= label_tag :sixth_type, "Sixth:" %>
         <%= hidden_field_tag 'note_id', note.id %>
-        <%= select_tag :sixth_type, options_for_select([ "25/16 (augmented fifth)", "8/5 (Five-limit minor)", "5/3 (5-limit major)"]), class: 'form-control' %>
+        <%= select_tag :sixth_type, options_for_select([ "Augmented fifth (25/16)", "Five-limit minor (8/5)", "5-limit major (5/3)"]), class: 'form-control' %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class="form-group">
+        <%= label_tag :seventh_type, "Seventh:" %>
+        <%= hidden_field_tag 'note_id', note.id %>
+        <%= select_tag :seventh_type, options_for_select([ "Major (15/8)", "Minor (9/5)", "Pythagorean minor (16/9)", "Harmonic minor (7/4)"]), class: 'form-control' %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class='form-group'>
+        <%= label_tag :octave, "Octave (2/1):" %>
+        <%= hidden_field_tag 'octave' %>
+        <%= hidden_field_tag 'note_id', note.id %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>

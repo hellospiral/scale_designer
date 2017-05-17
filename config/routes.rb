@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   resources :scales do
     resources :notes
   end
+
+  require 'sidekiq/web'
+  require 'sidekiq-scheduler/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

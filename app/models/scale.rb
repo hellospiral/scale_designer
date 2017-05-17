@@ -6,11 +6,11 @@ class Scale < ActiveRecord::Base
   after_create :create_starter_note
 
   def create_second(params, note)
-    if params['second_type'] == '25/24 (Minor 5-limit half-step)'
+    if params['second_type'] == 'Minor 5-limit half-step (25/24)'
       return self.notes.create(frequency: note.frequency * 1.04166667, name: '25/24 (Minor 5-limit half-step)')
-    elsif params['second_type'] == '16/15 (Major five-limit half-step)'
+    elsif params['second_type'] == 'Major five-limit half-step (16/15)'
       return self.notes.create(frequency: note.frequency * 1.06666667, name: '16/15 (Major five-limit half-step)')
-    elsif params['second_type'] == '9/8 (Major whole tone)'
+    elsif params['second_type'] == 'Major whole tone (9/8)'
       return self.notes.create(frequency: note.frequency * 1.125, name: '9/8 (Major whole tone)')
     end
   end
@@ -56,22 +56,22 @@ class Scale < ActiveRecord::Base
   end
 
   def create_sixth(params, note)
-    if params['sixth_type'] == '25/16 (augmented fifth)'
+    if params['sixth_type'] == 'Augmented fifth (25/16)'
       return self.notes.create(frequency: note.frequency * 1.5625, name: '25/16 (augmented fifth)')
-    elsif params['sixth_type'] == '8/5 (Five-limit minor)'
+    elsif params['sixth_type'] == 'Five-limit minor(8/5)'
       return self.notes.create(frequency: note.frequency * 1.6, name: '8/5 (Five-limit minor)')
-    elsif params['sixth_type'] == '5/3 (5-limit major)'
+    elsif params['sixth_type'] == '5-limit major (5/3)'
       return self.notes.create(frequency: note.frequency * 1.666666667, name: '5/3 (5-limit major)')
     end
   end
 
-  def create_fifth_below(params, note)
-    return self.notes.create(frequency: note.frequency * 0.666667, name: '4/3 perfect fifth down')
-  end
-
-  def create_third_below(params, note)
-    return self.notes.create(frequency: note.frequency * 0.8, name: '8/5 major third down')
-  end
+  # def create_fifth_below(params, note)
+  #   return self.notes.create(frequency: note.frequency * 0.666667, name: '4/3 perfect fifth down')
+  # end
+  #
+  # def create_third_below(params, note)
+  #   return self.notes.create(frequency: note.frequency * 0.8, name: '8/5 major third down')
+  # end
 
   def parse_frequencies(params)
     notes_array = params[:frequencies].split(',')
@@ -100,12 +100,12 @@ class Scale < ActiveRecord::Base
     elsif params['octave']
       child = self.create_octave(params, note)
       note.add_child child
-    elsif params['fifth_below']
-      child = self.create_fifth_below(params, note)
-      note.add_child child
-    elsif params['major_third_below']
-      child = self.create_third_below(params, note)
-      note.add_child child
+    # elsif params['fifth_below']
+    #   child = self.create_fifth_below(params, note)
+    #   note.add_child child
+    # elsif params['major_third_below']
+    #   child = self.create_third_below(params, note)
+    #   note.add_child child
     elsif params['second_type']
       child = self.create_second(params, note)
       note.add_child child
