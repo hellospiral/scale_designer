@@ -15,6 +15,8 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'closure_tree'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
 
 group :development, :test do
   gem 'byebug', platform: :mri

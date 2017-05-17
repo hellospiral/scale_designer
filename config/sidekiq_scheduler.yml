@@ -1,0 +1,2 @@
+ScaleCleanupJob:
+  every: '1h'
