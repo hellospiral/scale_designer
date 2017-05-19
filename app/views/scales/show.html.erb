@@ -13,10 +13,11 @@
 <% end %>
 <div id="notes_list">
   <% if @scale.notes.any? %>
-    
+
     <%= render :partial => 'notes/notes_tree', :object => @notes %>
   <% else %>
-    <p class="bufferText">This scale has no notes yet.</p>
+    <p class="bufferText">This scale has no notes yet. <%= link_to 'Add one.', new_scale_note_path(@scale), remote: true %></p>
+
   <% end %>
 </div>
 
