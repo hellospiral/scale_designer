@@ -1,4 +1,4 @@
-<h1 id="scale_name" class='centered'><%= @scale.name %></h1>
+<h1 id="scale_name" align = 'center' class=''><%= @scale.name %></h1>
 <% if @scale.user &&  @scale.user == current_user %>
   <div class="outer centered">
     <div id="edit_scale" class="inner">
@@ -28,9 +28,11 @@
   <div class='container centered well'>
     <ul class='list-group'>
       <li class='list-group-item'>
-        <h3>Log in to save your scale:</h3>
+        <h3 align ='center'>Log in to save your scale:</h3>
+        <div align = 'center'>
         <%= link_to "Sign up", new_user_registration_path(scale_id: @scale)  %> |
-        <%= link_to "Log in", new_user_session_path(scale_id: @scale)  %>
+        <%= link_to "Log in", new_user_session_path(scale_id: @scale) %>
+        </div>
       </li>
     </ul>
   </div>

@@ -3,6 +3,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
+    if request.env['omniauth.auth']['info']['first_name']
+      @user.first_name = request.env['omniauth.auth']['info']['first_name']
+    end
+
+    if request.env['omniauth.auth']['info']['last_name']
+      @user.last_name = request.env['omniauth.auth']['info']['last_name']
+    end
+
+    @user.save!
+
     if session[:scale_id].present?
 
       @scale = Scale.find(session[:scale_id])
