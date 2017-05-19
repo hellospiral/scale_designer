@@ -3,7 +3,7 @@
     <%= link_to "", scale_note_path(@scale, note), class: 'stopper glyphicon glyphicon-remove btn btn-xs btn-outline btn-danger', :data => {:method => "delete"}, remote: true %>
   <% end %>
 
-  <span id="note_freq-<%=note.id%>"><%= note.relative_name %> (<%= note.frequency.round(2) %> hz)</span>
+  <span id="note_freq-<%=note.id%>"><%= note.relative_name %> (<%= link_to note.frequency.round(2).to_s + " hz", edit_scale_note_path(@scale, note), class: 'stopper', remote: true %>)</span>
 
   <% if @scale.user == current_user || !@scale.user %>
     <%= render partial: "notes/add_note_dropdown", locals: { scale: @scale, note: note } %>

@@ -49,7 +49,7 @@ class Scale < ActiveRecord::Base
     elsif params['seventh_type'] == 'Pythagorean small minor (16/9)'
       return self.notes.create(frequency: note.frequency * 1.777777778, name: '16/9 minor seventh')
     elsif params['seventh_type'] == 'Septimal minor (7/4)'
-      return self.notes.create(frequency: note.frequency * 1.75, name: '7/4 minor seventh')
+      return self.notes.create(frequency: note.frequency * 1.75, name: '7/4 septimal minor seventh')
     end
   end
 

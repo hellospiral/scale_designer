@@ -5,5 +5,5 @@
     <%= f.label :frequency %>
     <%= f.text_field :frequency, class: 'form-control' %>
   </div>
-  <p><%= f.submit class: "btn btn-success btn-sm btn-outline" %></p>
+  <p><%= f.submit class: "btn btn-success btn-sm btn-outline" %> <%= link_to "Nevermind", scale_path(@scale),  class: "btn btn-warning btn-sm btn-outline" %></p>
 <% end %>

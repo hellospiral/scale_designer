@@ -8,7 +8,7 @@
       <div class="form-group">
         <%= label_tag :second_type, "Second:" %>
         <%= hidden_field_tag 'note_id', note.id %>
-        <%= select_tag :second_type, options_for_select([ "Minor 5-limit half-step (25/24)", "Major five-limit half-step (16/15)", 'Minor whole tone (10/9)', 'Major whole tone (9/8)' ], 'Major whole tone (9/8)'), class: 'form-control' %>
+        <%= select_tag :second_type, options_for_select([ "Minor 5-limit half-step (25/24)", "Major 5-limit half-step (16/15)", 'Minor whole tone (10/9)', 'Major whole tone (9/8)' ], 'Major whole tone (9/8)'), class: 'form-control' %>
       </div>
       <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
     <% end %>
