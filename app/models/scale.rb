@@ -83,14 +83,6 @@ class Scale < ActiveRecord::Base
     end
   end
 
-  # def create_fifth_below(params, note)
-  #   return self.notes.create(frequency: note.frequency * 0.666667, name: '4/3 perfect fifth down')
-  # end
-  #
-  # def create_third_below(params, note)
-  #   return self.notes.create(frequency: note.frequency * 0.8, name: '8/5 major third down')
-  # end
-
   def parse_frequencies(params)
     notes_array = params[:frequencies].split(',')
     notes_array.each do |note|
@@ -118,12 +110,6 @@ class Scale < ActiveRecord::Base
     elsif params['octave']
       child = self.create_octave(params, note)
       note.add_child child
-    # elsif params['fifth_below']
-    #   child = self.create_fifth_below(params, note)
-    #   note.add_child child
-    # elsif params['major_third_below']
-    #   child = self.create_third_below(params, note)
-    #   note.add_child child
     elsif params['second_type']
       child = self.create_second(params, note)
       note.add_child child
