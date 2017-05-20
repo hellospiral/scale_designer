@@ -6,8 +6,13 @@
   <div class="well">
     <ul id="scales_list" class="list-group">
       <% @scales.each do |scale| %>
-        <li class="list-group-item"><%= link_to scale.name, scale_path(scale) %>
-          - by <%= link_to scale.user.name, user_path(scale.user) %>
+        <li class="list-group-item">
+          <h4 class='list-group-item-heading'><%= link_to scale.name, scale_path(scale) %>
+            <% if scale.notes_count > 1 %>
+              <span style = 'float: right'class="badge"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>  <%=scale.notes_count%></span>
+            <% end %>
+          </h4>
+          <p class="list-group-item-text">by <%= link_to scale.user.name, user_path(scale.user) %></p>
         </li>
       <% end %>
     </ul>

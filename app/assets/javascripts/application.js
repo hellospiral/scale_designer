@@ -47,13 +47,13 @@ $(document).ready(function() {
         var $this = $(this);
         $this.toggleClass('note' + notes[i].id);
         if($this.hasClass('note' + notes[i].id)) {
-          $this.text('Play Note');
           $this.toggleClass("btn-danger").toggleClass("btn-success");
+          $this.toggleClass("glyphicon-stop").toggleClass("glyphicon-play");
           voices[i].vca.gain.value = 0;
         }
         else {
-          $this.text('Stop Note');
           $this.toggleClass("btn-success").toggleClass("btn-danger");
+          $this.toggleClass("glyphicon-play").toggleClass("glyphicon-stop");
           voices[i].vca.gain.value = .25;
         }
       });
