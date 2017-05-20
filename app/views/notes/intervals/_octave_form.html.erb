@@ -1,0 +1,8 @@
+<%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+  <div class='form-group'>
+    <%= label_tag :octave, "Octave (2/1):" %>
+    <%= hidden_field_tag 'octave' %>
+    <%= hidden_field_tag 'note_id', note.id %>
+  </div>
+  <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+<% end %>

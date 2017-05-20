@@ -1,0 +1,8 @@
+<%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+  <div class="form-group">
+    <%= label_tag :seventh_type, "Seventh:" %>
+    <%= hidden_field_tag 'note_id', note.id %>
+    <%= select_tag :seventh_type, options_for_select([ "Septimal minor (7/4)", "Pythagorean small minor (16/9)", "5-limit large minor (9/5)", "5-limit major (15/8)"  ]), class: 'form-control' %>
+  </div>
+  <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+<% end %>

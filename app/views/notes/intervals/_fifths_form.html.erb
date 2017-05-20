@@ -1,0 +1,8 @@
+<%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+  <div class="form-group">
+    <%= label_tag :fourth_type, "Fifth:" %>
+    <%= hidden_field_tag 'note_id', note.id %>
+    <%= select_tag :fifth_type, options_for_select([ "Diminished (36/25)", "Perfect (3/2)", "Augmented (25/16)"], "Perfect (3/2)"), class: 'form-control' %>
+  </div>
+  <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+<% end %>
