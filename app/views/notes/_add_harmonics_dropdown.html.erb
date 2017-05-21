@@ -1,0 +1,61 @@
+<a class="btn btn-primary btn-outline btn-sm" role="button" data-toggle="collapse" href="#<%= note.id%>addNoteCollapse" aria-expanded="false" aria-controls="<%= note.id %>addNoteCollapse">
+  Add Note
+</a>
+<div class="collapse" id="<%= note.id %>addNoteCollapse">
+  <div class="well">
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class='form-group'>
+        <%= label_tag :octave, "Second Harmonic (2/1):" %>
+        <%= hidden_field_tag 'octave' %>
+        <%= hidden_field_tag 'note_id', note.id %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class='form-group'>
+        <%= label_tag :third_harmonic, "Third Harmonic (3/2):" %>
+        <%= hidden_field_tag 'third_harmonic' %>
+        <%= hidden_field_tag 'note_id', note.id %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class='form-group'>
+        <%= label_tag :fifth_harmonic, "Fifth Harmonic (5/4):" %>
+        <%= hidden_field_tag 'fifth_harmonic' %>
+        <%= hidden_field_tag 'note_id', note.id %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class='form-group'>
+        <%= label_tag :seventh_harmonic, "Seventh Harmonic (7/4):" %>
+        <%= hidden_field_tag 'seventh_harmonic' %>
+        <%= hidden_field_tag 'note_id', note.id %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class='form-group'>
+        <%= label_tag :eleventh_harmonic, "Eleventh Harmonic (11/8):" %>
+        <%= hidden_field_tag 'eleventh_harmonic' %>
+        <%= hidden_field_tag 'note_id', note.id %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+    <%= form_tag scale_notes_path(@scale), class: 'form-inline', remote: true do %>
+      <div class='form-group'>
+        <%= label_tag :thirteenth_harmonic, "Thirteenth Harmonic (13/8):" %>
+        <%= hidden_field_tag 'thirteenth_harmonic' %>
+        <%= hidden_field_tag 'note_id', note.id %>
+      </div>
+      <%= submit_tag "Add", class: "btn btn-outline btn-success btn-sm stopper"%>
+    <% end %>
+
+  </div>
+</div>

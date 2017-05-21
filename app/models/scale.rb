@@ -54,7 +54,27 @@ class Scale < ActiveRecord::Base
   end
 
   def create_octave(params, note)
-    return self.notes.create(frequency: note.frequency * 2, name: '2/1 octave')
+    return self.notes.create(frequency: note.frequency * 2, name: '2/1')
+  end
+
+  def create_third_harmonic(params, note)
+    return self.notes.create(frequency: note.frequency * 1.5, name: '3/2 third harmonic')
+  end
+
+  def create_fifth_harmonic(params, note)
+    return self.notes.create(frequency: note.frequency * 1.25, name: '5/4 fifth harmonic')
+  end
+
+  def create_seventh_harmonic(params, note)
+    return self.notes.create(frequency: note.frequency * 1.75, name: '7/4 seventh harmonic')
+  end
+
+  def create_eleventh_harmonic(params, note)
+    return self.notes.create(frequency: note.frequency * 1.375, name: '11/8 eleventh harmonic')
+  end
+
+  def create_thirteenth_harmonic(params, note)
+    return self.notes.create(frequency: note.frequency * 1.625, name: '13/8 eleventh harmonic')
   end
 
   def create_fourth(params, note)
@@ -118,6 +138,31 @@ class Scale < ActiveRecord::Base
       note.add_child child
     else
       self.parse_frequencies(params)
+    end
+  end
+
+  def create_harmonic(params)
+    if params['note_id']
+      note = self.notes.find(params['note_id'])
+    end
+    if params['octave']
+      child = self.create_octave(params, note)
+      note.add_child child
+    elsif params['third_harmonic']
+      child = self.create_third_harmonic(params, note)
+      note.add_child child
+    elsif params['fifth_harmonic']
+      child = self.create_fifth_harmonic(params, note)
+      note.add_child child
+    elsif params['seventh_harmonic']
+      child = self.create_seventh_harmonic(params, note)
+      note.add_child child
+    elsif params['eleventh_harmonic']
+      child = self.create_eleventh_harmonic(params, note)
+      note.add_child child
+    elsif params['thirteenth_harmonic']
+      child = self.create_thirteenth_harmonic(params, note)
+      note.add_child child
     end
   end
 
