@@ -6,6 +6,9 @@
 
 Ruby on Rails web app for designing and saving custom musical scales in a just intonation tuning system.
 
+## Try it out
+
+Try out the app [on Heroku](https://glacial-stream-74704.herokuapp.com/)
 
 ## Configuration
 
